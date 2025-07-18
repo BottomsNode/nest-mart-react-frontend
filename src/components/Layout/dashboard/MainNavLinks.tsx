@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, Package, Users, ShoppingCart, Heart, ClipboardList } from "lucide-react";
+import { LayoutDashboard, Package, Users, ShoppingCart, Heart } from "lucide-react";
 import { BadgeNavLink } from "./BadgeNavLink";
 import { UserDropdown } from "./UserDropdown";
 import user_logo from "@/assets/user.png";
