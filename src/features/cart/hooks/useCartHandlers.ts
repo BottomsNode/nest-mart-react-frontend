@@ -3,12 +3,11 @@ import { useState } from "react";
 import type { RootState } from "@/store";
 import { removeFromCart, updateCartQty, clearCart } from "@/store/cartSlice";
 
-export function useCartHandlers() {
+export function useCartHandlers(setPopupMessage: (msg: string) => void) {
     const dispatch = useDispatch();
     const cartItems = useSelector((state: RootState) => state.cart.items);
 
     const [popupOpen, setPopupOpen] = useState(false);
-    const [popupMessage, setPopupMessage] = useState("");
 
     const showPopup = (message: string) => {
         setPopupMessage(message);
@@ -42,9 +41,7 @@ export function useCartHandlers() {
     return {
         cartItems,
         popupOpen,
-        popupMessage,
         setPopupOpen,
-        showPopup,
         incrementQty,
         decrementQty,
         handleRemove,

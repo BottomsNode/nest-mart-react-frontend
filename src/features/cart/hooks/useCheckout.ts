@@ -20,7 +20,7 @@ export const useCheckout = () => {
         handleRemove,
         handleClearCart,
         total,
-    } = useCartHandlers();
+    } = useCartHandlers(setPopupMessage);
 
     const handleCheckout = async () => {
         if (!userId) {

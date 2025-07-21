@@ -41,7 +41,7 @@ export const MobileNavLinks: React.FC<Props> = ({
                     </li>
                     <li>
                         <NavLink to="/orders" onClick={toggleMobileMenu} className={({ isActive }) => mobileNavClass({ isActive })}>
-                            My Orders {cartCount > 0 && <span className="ml-1 text-sm text-red-400">({cartCount})</span>}
+                            My Orders
                         </NavLink>
                     </li>
                 </>
