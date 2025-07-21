@@ -47,9 +47,8 @@ export const useSignupForm = () => {
         setLoading(true);
         setError(null);
         try {
-            const res = await axiosInstance.post("/user", data);
-            // console.log("User created:", res.data);
-
+            await axiosInstance.post("/user", data);
+            
             setTimeout(() => {
                 setPopupMessage("User created successfully!");
                 setPopupSeverity("success");
