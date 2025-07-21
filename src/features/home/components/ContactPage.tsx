@@ -24,7 +24,7 @@ export const ContactPage: FC = () => {
         );
     }, []);
 
-    const onSubmit = (data: ContactFormValues) => {
+    const onSubmit = (_data: ContactFormValues) => {
         // console.log("Contact Form Data:", data);
     };
 
