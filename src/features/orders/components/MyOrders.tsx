@@ -9,7 +9,8 @@ export const MyOrders = () => {
     const user = useSelector((state: RootState) => state.auth.user);
     const email = user?.email;
 
-    const { data: sales, isLoading, isError, refetch } = useSaleByEmail(email || "");
+    // const { data: sales, isLoading, isError, refetch } = useSaleByEmail(email || "");
+    const { data: sales, isLoading, isError, error, refetch } = useSaleByEmail(email || "");
 
     useEffect(() => {
         if (email) {
@@ -36,7 +37,7 @@ export const MyOrders = () => {
     if (isError) {
         return (
             <p className="text-center text-red-500 py-10">
-                Failed to load your orders.
+                {error?.message || "Failed to load your orders."}
             </p>
         );
     }

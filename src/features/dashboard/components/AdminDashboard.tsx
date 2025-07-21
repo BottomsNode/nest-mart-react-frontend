@@ -57,7 +57,7 @@ export const AdminDashboard: FC = () => {
           {salesLoading ? (
             <div className="text-gray-500 text-sm">Loading chart...</div>
           ) : salesError ? (
-            <div className="text-red-500 text-sm">{salesError}</div>
+            <div className="text-blue-700 text-sm">{salesError}</div>
           ) : (
             <SalesChart data={sales} />
           )}

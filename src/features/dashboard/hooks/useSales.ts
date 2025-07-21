@@ -44,7 +44,7 @@ export const useSales = () => {
                 setSales(chartData);
             })
             .catch((_err) => {
-                setError("Failed to load sales data");
+                setError("No sales data yet..");
             })
             .finally(() => setLoading(false));
     }, []);

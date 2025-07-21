@@ -32,9 +32,8 @@ export const useLogin = (redirectTo: string = "/dashboard") => {
             }, 1000);
         },
         onError: (error: any) => {
-            console.error("Login failed:", error);
             setAlertSeverity("error");
-            setAlertMessage("An error occurred during login. Please try again.");
+            setAlertMessage(`${error.response.data.message} or Email`);
             setOpenSnackbar(true);
         },
     });
