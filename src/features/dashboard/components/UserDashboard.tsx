@@ -9,12 +9,15 @@ import { useSaleByEmail } from "@/features/orders/hooks";
 export const UserDashboard: FC = () => {
     const user = useSelector((state: RootState) => state.auth.user);
     const email = user?.email || "user@example.com";
-    const username = "@" + email.split("@")[0];
+    const username = "@" + user?.name.split(" ")[0];
 
 
     const { data: sales, isLoading } = useSaleByEmail(email);
+    const sortedSales = sales
+        ?.slice()
+        .sort((a, b) => new Date(b.saleDate).getTime() - new Date(a.saleDate).getTime());
 
-    const lastOrder = sales && sales.length > 0 ? sales[0] : null;
+    const lastOrder = sortedSales?.[0] || null;
 
     const cardClass =
         "bg-white p-4 rounded-xl shadow hover:shadow-md transition hover:bg-gray-50 flex items-center space-x-3";
@@ -102,29 +105,31 @@ export const UserDashboard: FC = () => {
             <h2 className="text-lg font-semibold text-gray-800 mt-10 mb-4">
                 Recent Orders
             </h2>
+
             <div className="space-y-4">
-                {sales?.slice(0, 3).map((order) => (
-                    <Link
-                        key={order.id}
-                        to={`/orders`}
-                        className="block bg-white p-4 rounded-xl shadow hover:shadow-md transition hover:bg-gray-50"
-                    >
-                        <div className="flex justify-between items-center">
-                            <div>
-                                <p className="text-gray-800 font-medium">
-                                    Order #{order.id}
-                                </p>
-                                <p className="text-sm text-gray-500">
-                                    {new Date(order.saleDate).toLocaleDateString()}
-                                </p>
+                {sales
+                    ?.slice()
+                    .sort((a, b) => new Date(b.saleDate).getTime() - new Date(a.saleDate).getTime())
+                    .slice(0, 3)
+                    .map((order) => (
+                        <Link
+                            key={order.id}
+                            to={`/orders`}
+                            className="block bg-white p-4 rounded-xl shadow hover:shadow-md transition hover:bg-gray-50"
+                        >
+                            <div className="flex justify-between items-center">
+                                <div>
+                                    <p className="text-gray-800 font-medium">Order #{order.id}</p>
+                                    <p className="text-sm text-gray-500">
+                                        {new Date(order.saleDate).toLocaleDateString()}
+                                    </p>
+                                </div>
+                                <p className="text-green-600 font-semibold">₹{order.totalAmount}</p>
                             </div>
-                            <p className="text-green-600 font-semibold">
-                                ₹{order.totalAmount}
-                            </p>
-                        </div>
-                    </Link>
-                ))}
+                        </Link>
+                    ))}
             </div>
+
             <h2 className="text-lg font-semibold text-gray-800 mt-10 mb-4">
                 Recommended For You
             </h2>
@@ -142,9 +147,12 @@ export const UserDashboard: FC = () => {
                         <p className="text-sm font-medium text-gray-700">
                             Product {idx + 1}
                         </p>
-                        <button className="mt-2 text-indigo-600 text-sm font-medium hover:underline">
-                            View Product
-                        </button>
+                        <Link
+                            to="/products">
+                            <button className="mt-2 text-indigo-600 text-sm font-medium hover:underline">
+                                View Product
+                            </button>
+                        </Link>
                     </div>
                 ))}
             </div>
@@ -229,7 +237,7 @@ export const UserDashboard: FC = () => {
                             className="min-w-[140px] bg-white p-3 rounded-xl shadow hover:shadow-md transition hover:bg-gray-50 flex-shrink-0"
                         >
                             <img
-                            src={`https://via.assets.so/game.png?id=${idx + 1}&w=300&h=200`}
+                                src={`https://via.assets.so/game.png?id=${idx + 1}&w=300&h=200`}
                                 alt="Recently Viewed"
                                 className="rounded mb-2"
                             />

@@ -3,6 +3,7 @@ import { jwtDecode } from "jwt-decode";
 
 export interface DecodedToken {
     id: number;
+    name:string;
     email: string;
     role: string;
     permissions: string[];

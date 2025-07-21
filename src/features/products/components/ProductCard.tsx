@@ -81,7 +81,7 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ product, onPurchase 
                 <div className="space-y-1 mb-3">
                     <h2 className="text-lg font-semibold text-gray-800">{product.name}</h2>
                     <p className="text-sm text-gray-600">
-                        Price: ₹{(product.price * 83).toFixed(2)}
+                        Price: ₹/{(product.price).toFixed(2)}
                     </p>
                     <p className="text-sm">
                         Stock:{" "}

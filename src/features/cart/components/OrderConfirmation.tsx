@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import QRCode from "react-qr-code";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import logo from "@/assets/web_logo.jpg";
+import type { RootState } from "@/store";
+import { useSelector } from "react-redux";
 
 type OrderItem = {
     id: number;
     quantity: number;
     priceAtPurchase: number;
+    name?: string;
 };
 
 type OrderDetails = {
@@ -18,6 +21,7 @@ type OrderDetails = {
 export const OrderConfirmation: React.FC = () => {
     const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
     const navigate = useNavigate();
+    const user = useSelector((state: RootState) => state.auth.user);
 
     useEffect(() => {
         const order = localStorage.getItem("lastOrder");
@@ -37,18 +41,33 @@ export const OrderConfirmation: React.FC = () => {
     }, [navigate]);
 
     const generatePDF = () => {
-        if (!orderDetails) return;
+        if (!orderDetails || !user) return;
 
         const doc = new jsPDF();
-        doc.text("Order Receipt", 14, 20);
 
+        // Header with logo
+        const img = new Image();
+        img.src = logo;
+        doc.addImage(img, "PNG", 14, 10, 30, 30);
+        doc.setFontSize(18);
+        doc.text("Billing Invoice", 105, 20, { align: "center" });
+
+        // Customer Info
+        doc.setFontSize(12);
+        doc.text(`Customer Name: ${user.name}`, 14, 50);
+        doc.text(`Email: ${user.email}`, 14, 57);
+        doc.text(`Order ID: #${orderDetails.customerId}`, 14, 64);
+        doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 71);
+
+        // Items Table
         autoTable(doc, {
-            startY: 30,
-            head: [["Product ID", "Quantity", "Price"]],
+            startY: 80,
+            head: [["Product ID", "Quantity", "Unit Price (₹)", "Total (₹)"]],
             body: orderDetails.items.map(item => [
                 item.id,
                 item.quantity,
-                `$${item.priceAtPurchase.toFixed(2)}`,
+                item.priceAtPurchase.toFixed(2),
+                (item.quantity * item.priceAtPurchase).toFixed(2),
             ]),
         });
 
@@ -57,10 +76,11 @@ export const OrderConfirmation: React.FC = () => {
             0
         );
 
-        const finalY = (doc as any).lastAutoTable?.finalY || 40;
-        doc.text(`Total: $${total.toFixed(2)}`, 14, finalY + 10);
+        const finalY = (doc as any).lastAutoTable.finalY || 100;
+        doc.setFontSize(14);
+        doc.text(`Grand Total: ₹${total.toFixed(2)}`, 14, finalY + 10);
 
-        doc.save("order-receipt.pdf");
+        doc.save("invoice.pdf");
     };
 
     return (
@@ -70,25 +90,19 @@ export const OrderConfirmation: React.FC = () => {
                 Thank you for your purchase. Your order has been placed successfully.
             </p>
 
-            {orderDetails && (
-                <>
-                    <div className="bg-white p-4 shadow rounded mb-6">
-                        <h2 className="text-lg font-semibold mb-2">Order QR Code</h2>
-                        <QRCode
-                            value={JSON.stringify(orderDetails)}
-                            size={160}
-                            className="mx-auto"
-                        />
-                    </div>
+            <div className="bg-white p-6 rounded shadow mb-6 text-left">
+                <h2 className="text-lg font-semibold mb-2">Customer Info</h2>
+                <p><strong>Name:</strong> {user?.name}</p>
+                <p><strong>Email:</strong> {user?.email}</p>
+                <p><strong>Date:</strong> {new Date().toLocaleDateString()}</p>
+            </div>
 
-                    <button
-                        onClick={generatePDF}
-                        className="bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition"
-                    >
-                        Download Invoice (PDF)
-                    </button>
-                </>
-            )}
+            <button
+                onClick={generatePDF}
+                className="bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition"
+            >
+                Download Invoice (PDF)
+            </button>
         </div>
     );
 };

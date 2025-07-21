@@ -25,7 +25,7 @@ export const ContactPage: FC = () => {
     }, []);
 
     const onSubmit = (data: ContactFormValues) => {
-        console.log("Contact Form Data:", data);
+        // console.log("Contact Form Data:", data);
     };
 
     return (
