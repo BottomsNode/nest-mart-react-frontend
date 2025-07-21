@@ -32,6 +32,6 @@ export const dashboardChildRoutes: RouteObject[] = [
   },
   {
     path: "product-management",
-    element: <ProductManagemmoblent />
+    element: <ProductManagement />
   }
 ];

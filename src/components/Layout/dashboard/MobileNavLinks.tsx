@@ -56,7 +56,7 @@ export const MobileNavLinks: React.FC<Props> = ({
             )}
             {(isAdmin || isManager) && (
                 <li>
-                    <NavLink to="/dashboard/product-management" onClick={toggleMobileMenu} className={({ isActive }) => mobileNavClass({ isActive })}>
+                    <NavLink to="/dashboard/user-management" onClick={toggleMobileMenu} className={({ isActive }) => mobileNavClass({ isActive })}>
                         Users Management
                     </NavLink>
                 </li>
