@@ -1,8 +1,6 @@
-import { CartItemsList } from "./CartItemsList";
-import { CartSummary } from "./CartSummary";
-import { EmptyCartMessage } from "./EmptyCartMessage";
 import { Popup } from "@/components";
-import { useCheckout } from "../hooks/useCheckout";
+import { useCheckout } from "../hooks";
+import { EmptyCartMessage, CartItemsList, CartSummary } from "./others";
 
 export const MyCartList: React.FC = () => {
     const {

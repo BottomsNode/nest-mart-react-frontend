@@ -67,7 +67,7 @@ export const LoginForm: React.FC = () => {
                         </button>
                     </div>
 
-                    {loading && <Loader size={40} color="#007BFF" />}
+                    {loading && <Loader overlay={true} size={40} color="#007BFF" />}
 
                     <div className="flex justify-center pt-4">
                         <CommonButton type="submit" text="Login" disabled={loading} />
