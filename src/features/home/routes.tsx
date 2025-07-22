@@ -1,5 +1,5 @@
 import type { RouteObject } from "react-router";
-import { IndexPage, AboutPage, ContactPage, LoginForm } from "./components";
+import { IndexPage, AboutPage, ContactPage, LoginForm, ResetPasswordForm } from "./components";
 
 export const homeChildRoutes: RouteObject[] = [
   {
@@ -17,5 +17,9 @@ export const homeChildRoutes: RouteObject[] = [
   {
     path: "login",
     element: <LoginForm />,
+  },
+  {
+    path: "reset-password",
+    element: <ResetPasswordForm />,
   },
 ];

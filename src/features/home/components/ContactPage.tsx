@@ -4,11 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, type ContactFormValues } from "../models";
 import { InputField, TextareaField } from "@/components";
 import { CommonButton } from "@/components/Button";
+import { motion } from "framer-motion";
 
 export const ContactPage: FC = () => {
     const [mapSrc, setMapSrc] = useState("");
 
-    const methods = useForm({
+    const methods = useForm<ContactFormValues>({
         mode: "onBlur",
         resolver: zodResolver(contactSchema),
         defaultValues: {
@@ -24,18 +25,24 @@ export const ContactPage: FC = () => {
         );
     }, []);
 
-    const onSubmit = (_data: ContactFormValues) => {
-        // console.log("Contact Form Data:", data);
+    const onSubmit = (data: ContactFormValues) => {
+        // Future integration: Send to backend or show a toast/snackbar
+        console.log("Contact Form Submitted:", data);
     };
 
     return (
-        <div className="h-full flex items-center justify-center bg-gray-50 p-4">
-            <div className="max-w-6xl w-full bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="h-full flex items-center justify-center bg-gradient-to-tr from-blue-50 to-white p-4">
+            <motion.div
+                className="max-w-6xl w-full bg-white rounded-2xl shadow-xl overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
                 <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
                     {/* Form Side */}
-                    <div className="p-8 flex flex-col justify-center">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-                            Contact Us
+                    <div className="p-10 flex flex-col justify-center">
+                        <h2 className="text-4xl font-extrabold text-blue-700 mb-6 text-center">
+                            ✉️ Contact Us
                         </h2>
 
                         <FormProvider {...methods}>
@@ -58,7 +65,7 @@ export const ContactPage: FC = () => {
                                     placeholder="Enter your message"
                                 />
                                 <div className="flex justify-center pt-4">
-                                    <CommonButton type="submit" text="Send Message" />
+                                    <CommonButton type="submit" text="Send Message" className="px-6" />
                                 </div>
                             </form>
                         </FormProvider>
@@ -84,7 +91,7 @@ export const ContactPage: FC = () => {
                         )}
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 };
