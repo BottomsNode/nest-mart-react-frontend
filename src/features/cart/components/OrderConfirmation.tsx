@@ -20,6 +20,36 @@ type OrderDetails = {
     items: OrderItem[];
 };
 
+export const loadImageAsBase64 = (src: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx?.drawImage(img, 0, 0);
+            resolve(canvas.toDataURL('image/jpeg', 0.8));
+        };
+        img.onerror = reject;
+        img.src = src;
+    });
+};
+
+export const formatCurrency = (amount: number) =>
+    new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
+        minimumFractionDigits: 2,
+    }).format(amount);
+
+export const generateQRCode = (url: string): string => {
+    const size = 160;
+    const encodedUrl = encodeURIComponent(url);
+    return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodedUrl}`;
+};
+
 export const OrderConfirmation: React.FC = () => {
     const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
     const [pdfUrl, setPdfUrl] = useState<string | null>(null);
@@ -47,35 +77,6 @@ export const OrderConfirmation: React.FC = () => {
         }
     }, [navigate]);
 
-    const formatCurrency = (amount: number) =>
-        new Intl.NumberFormat("en-IN", {
-            style: "currency",
-            currency: "INR",
-            minimumFractionDigits: 2,
-        }).format(amount);
-
-    const loadImageAsBase64 = (src: string): Promise<string> => {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.crossOrigin = 'anonymous';
-            img.onload = () => {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                canvas.width = img.width;
-                canvas.height = img.height;
-                ctx?.drawImage(img, 0, 0);
-                resolve(canvas.toDataURL('image/jpeg', 0.8));
-            };
-            img.onerror = reject;
-            img.src = src;
-        });
-    };
-
-    const generateQRCode = (url: string): string => {
-        const size = 160;
-        const encodedUrl = encodeURIComponent(url);
-        return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodedUrl}`;
-    };
 
     const generatePDF = async () => {
         if (!orderDetails || !user) return;
@@ -188,7 +189,7 @@ export const OrderConfirmation: React.FC = () => {
             formData.append("timestamp", sigData.timestamp.toString());
             formData.append("signature", sigData.signature);
             formData.append("folder", sigData.folder);
-            console.log("<<<<<<<<<<<<<<<<<",formData)
+            console.log("<<<<<<<<<<<<<<<<<", formData)
 
             const uploadResponse = await axios.post(
                 `https://api.cloudinary.com/v1_1/${sigData.cloudName}/auto/upload`,
