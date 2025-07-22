@@ -1,34 +1,45 @@
 import React from "react";
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 export const Footer: React.FC = () => {
     return (
-        <footer className="bg-gray-800 text-white py-6 mt-10">
-            <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 space-y-4 md:space-y-0">
-                {/* Links */}
-                <div className="flex space-x-6">
-                    <a
-                        href="#"
-                        className="text-sm hover:text-blue-400 transition duration-200"
-                    >
-                        Privacy Policy
-                    </a>
-                    <a
-                        href="#"
-                        className="text-sm hover:text-blue-400 transition duration-200"
-                    >
-                        Terms of Service
-                    </a>
-                    <a
-                        href="#"
-                        className="text-sm hover:text-blue-400 transition duration-200"
-                    >
-                        Contact Us
-                    </a>
+        <footer className="bg-gray-800 text-white p-4 mt-auto">
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Company Info */}
+                <div>
+                    <h5 className="text-lg font-semibold mb-4">NestMart</h5>
+                    <p className="text-sm mb-4">Your one-stop online shop for everything you need. Quality products at great prices.</p>
+                    <p className="text-sm">&copy; {new Date().getFullYear()} NestMart. All rights reserved.</p>
                 </div>
 
-                {/* Copyright */}
-                <div className="text-sm text-gray-400 text-center md:text-right">
-                    &copy; {new Date().getFullYear()} NestMart. All rights reserved.
+                {/* Useful Links */}
+                <div>
+                    <h5 className="text-lg font-semibold mb-4">Quick Links</h5>
+                    <ul className="text-sm space-y-2">
+                        <li><a href="/terms" className="hover:text-indigo-300">Terms of Service</a></li>
+                        <li><a href="/privacy" className="hover:text-indigo-300">Privacy Policy</a></li>
+                        <li><a href="/faq" className="hover:text-indigo-300">FAQ</a></li>
+                        <li><a href="/contact" className="hover:text-indigo-300">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                {/* Social Media Links */}
+                <div>
+                    <h5 className="text-lg font-semibold mb-4">Follow Us</h5>
+                    <div className="flex space-x-4">
+                        <a href="https://facebook.com" className="text-white hover:text-indigo-300">
+                            <FaFacebook size={24} />
+                        </a>
+                        <a href="https://twitter.com" className="text-white hover:text-indigo-300">
+                            <FaTwitter size={24} />
+                        </a>
+                        <a href="https://linkedin.com" className="text-white hover:text-indigo-300">
+                            <FaLinkedin size={24} />
+                        </a>
+                        <a href="https://instagram.com" className="text-white hover:text-indigo-300">
+                            <FaInstagram size={24} />
+                        </a>
+                    </div>
                 </div>
             </div>
         </footer>

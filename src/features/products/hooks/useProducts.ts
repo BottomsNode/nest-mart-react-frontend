@@ -5,7 +5,7 @@ import { productSchema, productsResponseSchema, type Product, type ProductsRespo
 import z from "zod";
 import { VITE_PAGE_DATA_LIMIT } from "@/config";
 
-const fetchSearchResults = async (searchTerm: string): Promise<Product[]> => {
+export const fetchSearchResults = async (searchTerm: string): Promise<Product[]> => {
     const res = await axiosInstance.get(`/products/search/${encodeURIComponent(searchTerm)}`);
     const rawData = Array.isArray(res.data) ? res.data : res.data.products;
 
@@ -19,7 +19,7 @@ const fetchSearchResults = async (searchTerm: string): Promise<Product[]> => {
     return parsed.data;
 };
 
-const fetchProducts = async ({ pageParam = 1, queryKey }: any): Promise<ProductsResponse> => {
+export const fetchProducts = async ({ pageParam = 1, queryKey }: any): Promise<ProductsResponse> => {
     const [_key, searchTerm] = queryKey;
 
     if (searchTerm) {
