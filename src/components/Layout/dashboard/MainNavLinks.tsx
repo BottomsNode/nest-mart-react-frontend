@@ -5,7 +5,7 @@ import { UserDropdown } from "./UserDropdown";
 import user_logo from "@/assets/user.png";
 
 type Props = {
-    user: any;
+    user: { email: string } | null;
     isAdmin: boolean;
     isManager: boolean;
     wishlistCount: number;
