@@ -1,10 +1,9 @@
-import { useDashboardHeader, useNavClasses } from "./hooks";
-import { FaBars, FaTimes } from "react-icons/fa";
-import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
-import { LogoBrand } from "./LogoBrand";
-import { MainNavLinks } from "./MainNavLinks";
-import { MobileNavLinks } from "./MobileNavLinks";
+import { useDashboardHeader, useNavClasses } from "../hooks";
+import { useSelector } from "react-redux";
+import { LogoBrand } from "../others";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { MainNavLinks, MobileNavLinks } from "../links";
 
 export const DashboardHeader: React.FC = () => {
     const {

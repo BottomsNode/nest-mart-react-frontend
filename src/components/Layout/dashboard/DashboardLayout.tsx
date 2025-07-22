@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import { Outlet } from "react-router";
-import { DashboardHeader } from "./DashboardHeader";
-import { DashboardFooter } from "./DashboardFooter";
+import { DashboardFooter } from "./footer/DashboardFooter";
+import { DashboardHeader } from "./header/DashboardHeader";
 
 export const DashboardLayout: FC = () => {
   return (
