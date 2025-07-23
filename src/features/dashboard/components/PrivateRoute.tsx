@@ -12,9 +12,9 @@ export const PrivateRoute: FC<{ layout?: React.ReactNode }> = ({ layout }) => {
     useEffect(() => {
         if (!user) {
             localStorage.removeItem('token');
-            navigate("/login", {
+            navigate("/", {
                 replace: true,
-                state: { from: location },
+                state: { from: location, logout: true },
             });
         }
     }, [user, navigate, location]);

@@ -16,7 +16,7 @@ export const useLogout = () => {
             localStorage.clear();
             sessionStorage.clear();
             window.scrollTo({ top: 0 });
-            navigate("/login", { replace: true });
+            navigate("/");
         }, 1000);
     };
 
