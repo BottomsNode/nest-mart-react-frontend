@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useCreateProduct } from "../hooks";
 import { Popup } from "@/components/Popup";
 
-export const CreateProduct = () => {
+const CreateProduct = () => {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [stock, setStock] = useState("");
@@ -85,3 +85,5 @@ export const CreateProduct = () => {
         </>
     );
 };
+
+export default CreateProduct

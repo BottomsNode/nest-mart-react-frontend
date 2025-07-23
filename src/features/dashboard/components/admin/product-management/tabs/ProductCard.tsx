@@ -29,7 +29,7 @@ type Props = {
     onToggleActivation: () => void;
 };
 
-export const ProductCard: React.FC<Props> = ({
+const ProductCard: React.FC<Props> = ({
     product,
     isExpanded,
     formValues,
@@ -93,3 +93,5 @@ export const ProductCard: React.FC<Props> = ({
         </div>
     );
 };
+
+export default  ProductCard

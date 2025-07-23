@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { useRecentProducts, useRecentUsers } from "../../hooks";
 
-const RecentActivity: FC = () => {
+export const RecentActivity: FC = () => {
     const { users, loading: usersLoading, error: usersError } = useRecentUsers();
     const { products, loading: productsLoading, error: productsError } = useRecentProducts();
 
@@ -47,5 +47,3 @@ const RecentActivity: FC = () => {
         </div>
     );
 };
-
-export default RecentActivity

@@ -16,8 +16,8 @@ export const InputField: FC<InputFieldProps> = ({ label, name, icon, ...props })
     const error = errors?.[name]?.message as string | undefined;
 
     return (
-        <div className="space-y-1 w-full">
-            <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+        <div className="space-y-1 w-full mb-2">
+            <label htmlFor={name} className="block text-sm font-medium text-gray-700 ">
                 {label}
             </label>
             <div className="relative">

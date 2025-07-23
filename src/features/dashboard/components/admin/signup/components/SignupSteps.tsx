@@ -5,7 +5,7 @@ import type { SignupFormValues } from "@/features/dashboard/models";
 
 export const SignupStep1 = () => (
     <>
-        <InputField name="name" label="Full Name" placeholder="User's full name" autoComplete="name" />
+        <InputField name="name" label="Full Name" placeholder="User's full name" autoComplete="name"/>
         <InputField name="phone" label="Phone" placeholder="1234567890" autoComplete="tel" />
         <InputField name="email" label="Email" type="email" placeholder="user@example.com" autoComplete="email" />
     </>

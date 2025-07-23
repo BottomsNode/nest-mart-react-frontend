@@ -4,7 +4,7 @@ import { Popup } from "@/components/Popup";
 import { useProducts } from "@/features/products/hooks";
 import { ProductCard } from "./ProductCard";
 
-export const AllProducts = () => {
+const AllProducts = () => {
     const [expandedId, setExpandedId] = useState<number | null>(null);
     const [formValues, setFormValues] = useState<any>({});
     const [popupState, setPopupState] = useState({
@@ -138,3 +138,5 @@ export const AllProducts = () => {
         </div>
     );
 };
+
+export default AllProducts

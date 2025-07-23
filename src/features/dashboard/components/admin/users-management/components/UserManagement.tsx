@@ -1,9 +1,14 @@
-import { useState, type FC } from "react";
+import { lazy, useState, type FC } from "react";
 import { UserPlus, Users, UserCheck, UserX } from "lucide-react";
-import { ActiveUsers, AllUsers, DeactiveUsers } from "./tabs";
+// import { ActiveUsers, AllUsers, DeactiveUsers } from "./tabs";
 import type { RootState } from "@/store";
 import { useSelector } from "react-redux";
-import SignupForm from "../../signup/SignupForm";
+
+const ActiveUsers = lazy(()=> import('./tabs/ActiveUsers'))
+const AllUsers = lazy(()=> import('./tabs/AllUsers'))
+const DeactiveUsers = lazy(()=> import('./tabs/DeactiveUsers'))
+const SignupForm = lazy(()=> import('../../signup/SignupForm'))
+
 
 const UserManagement: FC = () => {
     const [activeTab, setActiveTab] = useState("listing");

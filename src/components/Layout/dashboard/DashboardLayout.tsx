@@ -2,6 +2,7 @@ import { type FC, Suspense } from "react";
 import { Outlet } from "react-router";
 import { DashboardFooter } from "./footer/DashboardFooter";
 import { DashboardHeader } from "./header/DashboardHeader";
+import { Loader } from "@/components/Loader";
 
 export const DashboardLayout: FC = () => {
   return (
@@ -12,7 +13,7 @@ export const DashboardLayout: FC = () => {
       </div>
 
       <main className="flex-grow pt-1 px-4">
-        <Suspense fallback={<div className="text-center py-10">Loading dashboard...</div>}>
+        <Suspense fallback={<div className="text-center py-10"><Loader size={50} color="#007FFF" /></div>}>
           <Outlet />
         </Suspense>
       </main>

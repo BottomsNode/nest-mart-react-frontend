@@ -1,11 +1,16 @@
-import { useState, type FC } from "react";
-import { ActiveProducts, AllProducts, CreateProduct, InactiveProducts } from "./tabs";
+import { lazy, useState, type FC } from "react";
 import {
     Boxes,
     CheckCircle,
     CircleOff,
     PlusCircle
 } from "lucide-react";
+
+const AllProducts = lazy(()=> import('./tabs/ActiveProducts'))
+const ActiveProducts = lazy(()=> import('./tabs/ActiveProducts'))
+const InactiveProducts = lazy(()=> import('./tabs/InactiveProducts'))
+const CreateProduct = lazy(()=> import('./tabs/CreateProduct'))
+
 
 const tabs = [
     { id: "all", label: "All Products", icon: <Boxes size={16} /> },

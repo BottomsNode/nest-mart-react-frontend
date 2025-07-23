@@ -16,7 +16,7 @@ type Props = {
     onToggleActivation: () => void;
 };
 
-export const ProductForm: React.FC<Props> = ({
+const ProductForm: React.FC<Props> = ({
     formValues,
     isUpdating,
     isDeleting,
@@ -83,3 +83,5 @@ export const ProductForm: React.FC<Props> = ({
         </div>
     );
 };
+
+export default ProductForm

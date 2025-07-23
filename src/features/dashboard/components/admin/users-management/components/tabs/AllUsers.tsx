@@ -4,10 +4,12 @@ import { useUsers } from "../../hook";
 import type { User } from "../../types";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
+import { Loader } from "@/components";
 
-export const AllUsers = () => {
+const AllUsers = () => {
     const { users, isLoading, activateUser, deactivateUser } = useUsers();
     const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
+    const [loadingUserId, setLoadingUserId] = useState<number | null>(null);
 
     const userRole = useSelector((state: RootState) => state.auth.user?.role);
 
@@ -15,7 +17,7 @@ export const AllUsers = () => {
         setSelectedUserId(prev => (prev === userId ? null : userId));
     };
 
-    if (isLoading) return <p className="text-center text-gray-500">Loading users...</p>;
+    if (isLoading) return <p className="text-center text-gray-500"><Loader size={25} color="#364153"/></p>;
 
     return (
         <div className="space-y-6">
@@ -35,15 +37,16 @@ export const AllUsers = () => {
                     >
                         {/* Top Section */}
                         <div
-                            className="p-4 flex justify-between items-start cursor-pointer"
+                            className="p-4 flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 cursor-pointer"
                             onClick={() => toggleDetails(user.id)}
                         >
+                            {/* User Info */}
                             <div className="space-y-1">
                                 <h3 className="text-lg font-semibold">{user.name}</h3>
-                                <p className="text-sm text-gray-600">{user.email}</p>
+                                <p className="text-sm text-gray-600 break-all">{user.email}</p>
                                 <span
                                     className={`inline-block text-xs font-medium px-2 py-0.5 rounded-full mt-1 
-                                        ${user.isActive
+        ${user.isActive
                                             ? "bg-green-100 text-green-700"
                                             : "bg-red-100 text-red-700"
                                         }`}
@@ -55,19 +58,32 @@ export const AllUsers = () => {
                             {/* Only show toggle button to ADMIN */}
                             {userRole === "ADMIN" && (
                                 <button
-                                    onClick={(e) => {
+                                    onClick={async (e) => {
                                         e.stopPropagation();
-                                        user.isActive
-                                            ? deactivateUser.mutate(user.id)
-                                            : activateUser.mutate(user.id);
+                                        setLoadingUserId(user.id);
+                                        try {
+                                            if (user.isActive) {
+                                                await deactivateUser.mutateAsync(user.id);
+                                            } else {
+                                                await activateUser.mutateAsync(user.id);
+                                            }
+                                        } catch (err) {
+                                            console.error("Mutation failed", err);
+                                        } finally {
+                                            setLoadingUserId(null);
+                                        }
                                     }}
-                                    className={`flex items-center text-sm font-medium px-2 py-1 rounded-xl transition
-                                        ${user.isActive
-                                            ? "text-red-700 hover:bg-red-100"
-                                            : "text-green-700 hover:bg-green-100"
+                                    className={`flex items-center justify-center text-sm font-medium px-4 py-2 rounded-xl transition duration-200 min-w-[120px] w-full sm:w-auto
+        ${user.isActive
+                                            ? "text-red-700 bg-red-50 border border-red-400 hover:bg-red-100"
+                                            : "text-green-700 bg-green-50 border border-green-400 hover:bg-green-100"
                                         }`}
                                 >
-                                    {user.isActive ? (
+                                    {loadingUserId === user.id ? (
+                                        <div className="animate-pulse">
+                                            <Loader size={25} color="#364153" />
+                                        </div>
+                                    ) : user.isActive ? (
                                         <>
                                             <UserMinus size={16} className="mr-1" /> Deactivate
                                         </>
@@ -79,6 +95,7 @@ export const AllUsers = () => {
                                 </button>
                             )}
                         </div>
+
 
                         {/* Collapsible Details */}
                         {selectedUserId === user.id && (
@@ -101,3 +118,5 @@ export const AllUsers = () => {
         </div>
     );
 };
+
+export default AllUsers

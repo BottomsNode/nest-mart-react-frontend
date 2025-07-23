@@ -13,7 +13,7 @@ interface Props {
     data: { date: string; revenue: number }[];
 }
 
-const SalesChart: FC<Props> = ({ data }) => {
+export const SalesChart: FC<Props> = ({ data }) => {
     return (
         <div className="bg-white rounded-xl shadow-sm pb-10 pt-6 pr-6 pl-6">
             <h2 className="text-lg font-semibold text-gray-800 mb-4">Sales Performance</h2>
@@ -43,5 +43,3 @@ const SalesChart: FC<Props> = ({ data }) => {
         </div>
     );
 };
-
-export default SalesChart;

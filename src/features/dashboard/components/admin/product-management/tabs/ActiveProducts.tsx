@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useProducts } from "@/features/products/hooks";
 import type { Product } from "@/store/wishlistSlice";
 
-export const ActiveProducts = () => {
+const ActiveProducts = () => {
     const [searchTerm] = useState("");
 
     const {
@@ -74,3 +74,5 @@ export const ActiveProducts = () => {
         </div>
     );
 };
+
+export default ActiveProducts

@@ -2,7 +2,7 @@
 import { useInactiveProducts } from "../hooks";
 import { useEffect } from "react";
 
-export const InactiveProducts = () => {
+const InactiveProducts = () => {
     const {
         data,
         isLoading,
@@ -66,3 +66,5 @@ export const InactiveProducts = () => {
         </div>
     );
 };
+
+export default InactiveProducts

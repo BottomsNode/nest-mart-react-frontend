@@ -1,9 +1,7 @@
 import type { FC } from "react";
 import { Users, PackageCheck, ShoppingCart, DollarSign } from "lucide-react";
 import { useAdminDashboardMetrics, useSales } from "../hooks";
-import StatsGrid from "./admin/StatsGrid";
-import RecentActivity from "./admin/RecentActivity";
-import SalesChart from "./admin/SalesChart";
+import { RecentActivity, SalesChart, StatsGrid } from "./admin";
 
 const AdminDashboard: FC = () => {
   const { metrics, loading, error } = useAdminDashboardMetrics();
