@@ -14,6 +14,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          
           // Group node_modules into 'vendor'
           if (id.includes('node_modules')) {
             return 'vendor';
