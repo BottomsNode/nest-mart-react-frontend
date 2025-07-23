@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 
-export const AboutPage: FC = () => {
+const AboutPage: FC = () => {
     return (
         <div className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-white px-4">
             <motion.div
@@ -22,3 +22,5 @@ export const AboutPage: FC = () => {
         </div>
     );
 };
+
+export default AboutPage;

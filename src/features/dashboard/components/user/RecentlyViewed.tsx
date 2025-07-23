@@ -1,4 +1,4 @@
-export const RecentlyViewed: React.FC = () => (
+const RecentlyViewed: React.FC = () => (
     <div className="mt-10">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Recently Viewed</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -16,3 +16,5 @@ export const RecentlyViewed: React.FC = () => (
         </div>
     </div>
 );
+
+export default RecentlyViewed

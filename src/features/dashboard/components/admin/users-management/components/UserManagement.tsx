@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, type FC } from "react";
 import { UserPlus, Users, UserCheck, UserX } from "lucide-react";
 import { ActiveUsers, AllUsers, DeactiveUsers } from "./tabs";
 import type { RootState } from "@/store";
 import { useSelector } from "react-redux";
-import { SignupForm } from "../../signup";
+import SignupForm from "../../signup/SignupForm";
 
-export const UserManagement = () => {
+const UserManagement: FC = () => {
     const [activeTab, setActiveTab] = useState("listing");
     const userRole = useSelector((state: RootState) => state.auth.user?.role);
 
@@ -59,3 +59,5 @@ export const UserManagement = () => {
         </div>
     );
 };
+
+export default UserManagement

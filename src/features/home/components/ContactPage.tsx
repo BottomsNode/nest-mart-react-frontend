@@ -6,7 +6,7 @@ import { InputField, TextareaField } from "@/components";
 import { CommonButton } from "@/components/Button";
 import { motion } from "framer-motion";
 
-export const ContactPage: FC = () => {
+const ContactPage: FC = () => {
     const [mapSrc, setMapSrc] = useState("");
 
     const methods = useForm<ContactFormValues>({
@@ -95,3 +95,5 @@ export const ContactPage: FC = () => {
         </div>
     );
 };
+
+export default ContactPage

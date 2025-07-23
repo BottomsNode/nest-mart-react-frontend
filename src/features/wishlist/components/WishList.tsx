@@ -8,7 +8,7 @@ import { removeFromWishlist } from "@/store/wishlistSlice";
 import { addToCart } from "@/store/cartSlice";
 import { Popup } from "@/components";
 
-export const WishList: React.FC = () => {
+const WishList: React.FC = () => {
     const dispatch = useDispatch();
     const wishlist = useSelector((state: RootState) => state.wishlist.items);
 
@@ -77,3 +77,5 @@ export const WishList: React.FC = () => {
         </div>
     );
 };
+
+export default WishList

@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-export const QuickSettings: React.FC = () => (
+const QuickSettings: React.FC = () => (
     <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-white p-4 rounded-xl shadow">
             <Link to="/dashboard/profile">
@@ -14,3 +14,5 @@ export const QuickSettings: React.FC = () => (
         </div>
     </div>
 );
+
+export default QuickSettings

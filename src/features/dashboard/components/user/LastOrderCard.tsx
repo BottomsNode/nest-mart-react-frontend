@@ -1,7 +1,7 @@
 import { CalendarDays, IndianRupee } from "lucide-react";
 import type { FC } from "react";
 
-export const LastOrderCard: FC<{ sales: any[]; isLoading: boolean }> = ({
+const LastOrderCard: FC<{ sales: any[]; isLoading: boolean }> = ({
     sales,
     isLoading,
 }) => {
@@ -41,3 +41,5 @@ export const LastOrderCard: FC<{ sales: any[]; isLoading: boolean }> = ({
         </div>
     );
 };
+
+export default LastOrderCard

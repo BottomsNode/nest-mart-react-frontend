@@ -1,5 +1,7 @@
+import { lazy } from "react";
 import type { RouteObject } from "react-router";
-import { MyOrders } from "./components";
+
+const MyOrders = lazy(() => import("./components/MyOrders"))
 
 export const orderChildRoutes: RouteObject[] = [
   {

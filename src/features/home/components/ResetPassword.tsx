@@ -10,7 +10,7 @@ import { Loader } from "@/components/Loader";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axiosInstance from "@/api/handler";
 
-export const ResetPasswordForm: React.FC = () => {
+const ResetPasswordForm: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -122,3 +122,5 @@ export const ResetPasswordForm: React.FC = () => {
         </>
     );
 };
+
+export default ResetPasswordForm

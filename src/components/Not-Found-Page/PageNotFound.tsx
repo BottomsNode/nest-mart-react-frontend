@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 
-export const PageNotFound: React.FC = () => {
+const PageNotFound: React.FC = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem("token");
     const redirectTo = token ? "/dashboard" : "/";
@@ -22,3 +22,5 @@ export const PageNotFound: React.FC = () => {
         </div>
     );
 };
+
+export default PageNotFound;

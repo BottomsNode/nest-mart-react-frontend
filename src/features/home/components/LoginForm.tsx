@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useLogin } from "../hooks";
 import { Link } from "react-router-dom";
 
-export const LoginForm: React.FC = () => {
+const LoginForm: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     const methods = useForm<LoginFormValues>({
@@ -102,3 +102,5 @@ export const LoginForm: React.FC = () => {
         </div>
     );
 };
+
+export default LoginForm

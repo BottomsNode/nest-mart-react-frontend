@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { Sparkles, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export const IndexPage: FC = () => {
+const IndexPage: FC = () => {
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-blue-50 to-white px-4">
       <div className="text-center animate-fade-in-up">
@@ -27,3 +27,5 @@ export const IndexPage: FC = () => {
     </div>
   );
 };
+
+export default IndexPage;

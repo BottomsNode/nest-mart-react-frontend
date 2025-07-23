@@ -50,7 +50,7 @@ export const generateQRCode = (url: string): string => {
     return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodedUrl}`;
 };
 
-export const OrderConfirmation: React.FC = () => {
+const OrderConfirmation: React.FC = () => {
     const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
     const [pdfUrl, setPdfUrl] = useState<string | null>(null);
     const [isGenerating, setIsGenerating] = useState(false);
@@ -364,3 +364,5 @@ export const OrderConfirmation: React.FC = () => {
         </div>
     );
 };
+
+export default OrderConfirmation

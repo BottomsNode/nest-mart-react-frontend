@@ -11,14 +11,14 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { formatCurrency, loadImageAsBase64 } from "@/features/cart/components";
 
-export const MyOrders = () => {
+const MyOrders = () => {
     const user = useSelector((state: RootState) => state.auth.user);
     const email = user?.email;
     const [selectedSale, setSelectedSale] = useState<any | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { data: sales, isLoading, isError, error, refetch } = useSaleByEmail(email || "");
-    
+
     useEffect(() => {
         if (email) refetch();
     }, [email, refetch]);
@@ -214,3 +214,5 @@ export const MyOrders = () => {
         </div>
     );
 };
+
+export default MyOrders;

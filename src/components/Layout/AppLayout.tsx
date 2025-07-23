@@ -1,8 +1,8 @@
-import { useEffect, useState, type FC } from "react";
+import { Suspense, useEffect, useState, type FC } from "react";
 import { Outlet } from "react-router";
-import clsx from "clsx";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import clsx from "clsx";
 
 export const AppLayout: FC = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -37,9 +37,11 @@ export const AppLayout: FC = () => {
         <Header />
       </div>
 
-      {/* Main content with top padding to prevent overlap */}
+      {/* Main content with top padding */}
       <main className="flex-grow pt-20 px-4">
-        <Outlet />
+        <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </main>
 
       {/* Footer */}

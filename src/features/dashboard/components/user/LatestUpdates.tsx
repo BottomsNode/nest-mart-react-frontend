@@ -1,4 +1,4 @@
-export const LatestUpdates: React.FC = () => (
+const LatestUpdates: React.FC = () => (
     <div className="mt-10">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Latest Updates</h2>
         <ul className="space-y-3">
@@ -14,3 +14,5 @@ export const LatestUpdates: React.FC = () => (
         </ul>
     </div>
 );
+
+export default LatestUpdates

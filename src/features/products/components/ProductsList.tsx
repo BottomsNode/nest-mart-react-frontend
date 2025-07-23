@@ -6,7 +6,7 @@ import { ProductGrid } from "./ProductGrid";
 import { ProductLoaderStatus } from "./ProductLoaderStatus";
 import { addToCart } from "@/store/cartSlice";
 
-export const ProductsList: React.FC = () => {
+const ProductsList: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
 
@@ -89,3 +89,5 @@ export const ProductsList: React.FC = () => {
         </div>
     );
 };
+
+export default ProductsList

@@ -4,7 +4,7 @@ import { SignupStep1, SignupStep2, SignupStep3 } from "./components";
 import { CommonButton, Loader, Popup } from "@/components";
 import { useSignupForm, TOTAL_STEPS } from "./hooks";
 
-export const SignupForm: FC = () => {
+const SignupForm: FC = () => {
     const {
         step,
         showPassword,
@@ -61,3 +61,5 @@ export const SignupForm: FC = () => {
         </div>
     );
 };
+
+export default SignupForm;

@@ -2,7 +2,7 @@ import { Popup } from "@/components";
 import { useCheckout } from "../hooks";
 import { EmptyCartMessage, CartItemsList, CartSummary } from "./others";
 
-export const MyCartList: React.FC = () => {
+const MyCartList: React.FC = () => {
     const {
         cartItems,
         total,
@@ -56,3 +56,5 @@ export const MyCartList: React.FC = () => {
         </div>
     );
 };
+
+export default MyCartList

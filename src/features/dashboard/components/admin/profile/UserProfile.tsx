@@ -5,7 +5,7 @@ import { Popup } from "@/components";
 import type { RootState } from "@/store";
 import { AddressForm, ProfileForm } from "./components";
 
-export const UserProfile: React.FC = () => {
+const UserProfile: React.FC = () => {
     const userId = useSelector((state: RootState) => state.auth.user?.id);
     const {
         loading,
@@ -44,3 +44,5 @@ export const UserProfile: React.FC = () => {
         </>
     );
 };
+
+export default UserProfile

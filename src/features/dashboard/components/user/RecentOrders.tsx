@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { Link } from "react-router-dom";
 
-export const RecentOrders: FC<{ sales: any[] }> = ({ sales }) => (
+const RecentOrders: FC<{ sales: any[] }> = ({ sales }) => (
     <>
         <h2 className="text-lg font-semibold text-gray-800 mt-10 mb-4">
             Recent Orders
@@ -33,3 +33,5 @@ export const RecentOrders: FC<{ sales: any[] }> = ({ sales }) => (
         </div>
     </>
 );
+
+export default RecentOrders

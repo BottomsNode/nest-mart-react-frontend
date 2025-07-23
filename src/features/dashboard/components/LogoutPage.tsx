@@ -2,7 +2,7 @@ import React from "react";
 import { useLogout } from "../hooks";
 import { Loader2 } from "lucide-react";
 
-export const Logout: React.FC = () => {
+const Logout: React.FC = () => {
     useLogout();
     return (
         <div className="min-h-[58vh] flex flex-col items-center justify-center bg-gray-50 px-4 animate-fadeIn">
@@ -18,3 +18,5 @@ export const Logout: React.FC = () => {
         </div>
     );
 };
+
+export default Logout

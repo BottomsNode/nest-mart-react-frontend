@@ -1,9 +1,11 @@
 import type { FC } from "react";
 import { Users, PackageCheck, ShoppingCart, DollarSign } from "lucide-react";
 import { useAdminDashboardMetrics, useSales } from "../hooks";
-import { StatsGrid, RecentActivity, SalesChart } from "./admin";
+import StatsGrid from "./admin/StatsGrid";
+import RecentActivity from "./admin/RecentActivity";
+import SalesChart from "./admin/SalesChart";
 
-export const AdminDashboard: FC = () => {
+const AdminDashboard: FC = () => {
   const { metrics, loading, error } = useAdminDashboardMetrics();
   const { sales, loading: salesLoading, error: salesError } = useSales();
 
@@ -66,3 +68,5 @@ export const AdminDashboard: FC = () => {
     </div>
   );
 };
+
+export default AdminDashboard

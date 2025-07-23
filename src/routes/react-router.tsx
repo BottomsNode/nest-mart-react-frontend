@@ -1,14 +1,16 @@
+import { lazy } from "react";
 import { createBrowserRouter, type RouteObject } from "react-router";
 import { homeChildRoutes } from "@/features/home/routes";
 import { dashboardChildRoutes } from "@/features/dashboard/routes";
 import { PrivateRoute } from "@/features/dashboard/components";
-import { PageNotFound } from "@/components/Not-Found-Page";
 import { PublicRoute } from "@/features/home/components";
 import { cartChildRoutes } from "@/features/cart/routes";
 import { AppLayout, DashboardLayout } from "@/components";
 import { wishlistChildRoutes } from "@/features/wishlist/routes";
 import { productChildRoutes } from "@/features/products/routes";
 import { orderChildRoutes } from "@/features/orders/routes";
+
+const PageNotFound = lazy(() => import('@/components/Not-Found-Page/PageNotFound'));
 
 const routes: RouteObject[] = [
 

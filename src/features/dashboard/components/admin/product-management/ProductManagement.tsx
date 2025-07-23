@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FC } from "react";
 import { ActiveProducts, AllProducts, CreateProduct, InactiveProducts } from "./tabs";
 import {
     Boxes,
@@ -14,7 +14,7 @@ const tabs = [
     { id: "create", label: "Create Product", icon: <PlusCircle size={16} /> },
 ];
 
-export const ProductManagement = () => {
+const ProductManagement: FC = () => {
     const [activeTab, setActiveTab] = useState("all");
 
     const renderTabContent = () => {
@@ -56,3 +56,5 @@ export const ProductManagement = () => {
         </div>
     );
 };
+
+export default ProductManagement;

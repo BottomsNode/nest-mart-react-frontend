@@ -1,5 +1,8 @@
 import type { RouteObject } from "react-router";
-import { MyCartList, OrderConfirmation } from "./components";
+import { lazy } from "react";
+
+const MyCartList = lazy(()=> import("./components/MyCartList"));
+const OrderConfirmation = lazy(()=> import("./components/OrderConfirmation"));
 
 export const cartChildRoutes: RouteObject[] = [
   {

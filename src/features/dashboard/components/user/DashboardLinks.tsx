@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { ShoppingCart, Heart, PackageCheck } from "lucide-react";
+import type { FC } from "react";
 
-export const DashboardLinks = () => {
-    const cardClass =
-        "bg-white p-4 rounded-xl shadow hover:shadow-md transition hover:bg-gray-50 flex items-center space-x-3";
+const DashboardLinks: FC = () => {
+
+    const cardClass = "bg-white p-4 rounded-xl shadow hover:shadow-md transition hover:bg-gray-50 flex items-center space-x-3";
 
     return (
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -35,3 +36,5 @@ export const DashboardLinks = () => {
         </section>
     );
 };
+
+export default DashboardLinks;
