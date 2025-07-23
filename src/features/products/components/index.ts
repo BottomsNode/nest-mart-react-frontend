@@ -3,4 +3,5 @@ export * from './ProductGrid'
 export * from './ProductLoaderStatus'
 export * from './ProductSearch'
 export * from './ProductsList'
-
+export * from './QuantitySelector'
+export * from './StatusBadge'

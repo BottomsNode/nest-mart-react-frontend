@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist, removeFromWishlist, type Product } from "@/store/wishlistSlice";
 import type { RootState } from "@/store";
 import { AddToCartButton, Popup } from "@/components";
-import { QuantitySelector, StatusBadge, usePopup } from "../hooks";
+import { usePopup } from "../hooks";
+import { StatusBadge } from "./StatusBadge";
+import { QuantitySelector } from "./QuantitySelector";
 
 type ProductCardProps = {
     product: Product;
