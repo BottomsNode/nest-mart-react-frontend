@@ -1,4 +1,3 @@
-// vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
@@ -15,14 +14,19 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          // Group node_modules into 'vendor'
           if (id.includes('node_modules')) {
             return 'vendor';
           }
-          if (id.includes('src/pages/dashboard')) {
-            return 'dashboard';
+
+          const match = id.match(/src\/pages\/([^/]+)/);
+          if (match) {
+            return `page-${match[1]}`; // 'page-dashboard', 'page-auth'
           }
-          if (id.includes('src/pages/auth')) {
-            return 'auth';
+
+          const featureMatch = id.match(/src\/features\/([^/]+)/);
+          if (featureMatch) {
+            return `feature-${featureMatch[1]}`; //'feature-cart', 'feature-user'
           }
         },
       },
