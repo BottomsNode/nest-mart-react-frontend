@@ -12,9 +12,13 @@ const queryClient = new QueryClient();
 export const App: FC = () => {
   return (
     <Provider store={store}>
+      {/* for tank-stack-query for caching data, fetching bg-data*/}
       <QueryClientProvider client={queryClient}>
+        {/* for redux persisting the data */}
         <PersistGate loading={null} persistor={persistor}>
+          {/* tooltip is used for the hover effect for chart used in admin dashboard*/}
           <Tooltip.Provider delayDuration={1000}>
+            {/* main App Routes file */}
             <AppRoutes />
           </Tooltip.Provider>
         </PersistGate>

@@ -6,14 +6,14 @@ import wishlistReducer from "./wishlistSlice";
 import cartReducer from "./cartSlice";
 import { combineReducers } from "redux";
 
-// Combine reducers
+// My all reducers registering
 const appReducer = combineReducers({
     auth: authReducer,
     wishlist: wishlistReducer,
     cart: cartReducer,
 });
 
-// Reset state on logout
+// Reset(delete) data from state on logout
 const rootReducer = (state: any, action: any) => {
     if (action.type === "auth/logout") {
         storage.removeItem("persist:root");
@@ -26,12 +26,12 @@ const rootReducer = (state: any, action: any) => {
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: ["wishlist"],
+    wishlist: ["wishlist"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// Store
+// Store acts as the middleware config
 export const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
@@ -41,6 +41,6 @@ export const store = configureStore({
 // Persistor
 export const persistor = persistStore(store);
 
-// Types
+// Typescript Types
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

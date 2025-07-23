@@ -1,3 +1,4 @@
+import { Loader } from "@/components";
 import { useEffect, type FC, useState } from "react";
 import { useNavigate, Outlet } from "react-router";
 
@@ -16,7 +17,8 @@ export const PublicRoute: FC<{ layout?: React.ReactNode }> = ({ layout }) => {
     }, [navigate]);
 
     if (isChecking) {
-        return <div>Loading...</div>;
+        // my custom loader
+        return <div> <Loader overlay size={40} color="#007BFF" /> </div>;
     }
 
     return layout ? <>{layout}</> : <Outlet />;

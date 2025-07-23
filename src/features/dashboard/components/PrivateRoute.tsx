@@ -2,6 +2,7 @@ import { useEffect, type FC } from "react";
 import { useNavigate, Outlet, useLocation } from "react-router";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
+import { Loader } from "@/components";
 
 export const PrivateRoute: FC<{ layout?: React.ReactNode }> = ({ layout }) => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ export const PrivateRoute: FC<{ layout?: React.ReactNode }> = ({ layout }) => {
     }, [user, navigate, location]);
 
     if (!user) {
-        return <div>Loading...</div>;
+        return <div> <Loader overlay size={40} color="#007BFF" /> </div>;
     }
 
     return layout ? <>{layout}</> : <Outlet />;

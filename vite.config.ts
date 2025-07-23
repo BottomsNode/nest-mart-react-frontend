@@ -12,6 +12,8 @@ export default defineConfig({
     },
   },
   build: {
+    // increase my chunk size in vercel (1500Kb)
+    chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
         manualChunks(id) {
