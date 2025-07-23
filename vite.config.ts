@@ -14,22 +14,32 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          
-          // Group node_modules into 'vendor'
+          // All third-party libraries go into vendor chunk
           if (id.includes('node_modules')) {
             return 'vendor';
           }
 
-          const match = id.match(/src\/pages\/([^/]+)/);
-          if (match) {
-            return `page-${match[1]}`; // 'page-dashboard', 'page-auth'
+          // Pages: src/pages/dashboard -> chunk-page-dashboard
+          const pageMatch = id.match(/\/src\/pages\/([^\/]+)/);
+          if (pageMatch) {
+            return `chunk-page-${pageMatch[1]}`;
           }
 
-          const featureMatch = id.match(/src\/features\/([^/]+)/);
+          // Features: src/features/user -> chunk-feature-user
+          const featureMatch = id.match(/\/src\/features\/([^\/]+)/);
           if (featureMatch) {
-            return `feature-${featureMatch[1]}`; //'feature-cart', 'feature-user'
+            return `chunk-feature-${featureMatch[1]}`;
           }
-        },
+
+          // Shared chunks (optional): e.g. src/components, src/utils, etc.
+          const sharedMatch = id.match(/\/src\/(components|utils|hooks|lib)\//);
+          if (sharedMatch) {
+            return `chunk-${sharedMatch[1]}`;
+          }
+
+          // fallback default chunk name (optional)
+          return null;
+        }
       },
     },
   },
