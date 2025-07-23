@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { ProductForm } from "./ProductForm";
+import React, { lazy, useState } from "react";
+const ProductForm = lazy(()=> import('./ProductForm'))
 
 type Product = {
     id: number;
