@@ -6,7 +6,7 @@ import {
     PlusCircle
 } from "lucide-react";
 
-const AllProducts = lazy(()=> import('./tabs/ActiveProducts'))
+const AllProducts = lazy(()=> import('./tabs/AllProducts'))
 const ActiveProducts = lazy(()=> import('./tabs/ActiveProducts'))
 const InactiveProducts = lazy(()=> import('./tabs/InactiveProducts'))
 const CreateProduct = lazy(()=> import('./tabs/CreateProduct'))

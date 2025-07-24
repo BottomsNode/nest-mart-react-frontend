@@ -1,19 +1,9 @@
-import { useQuery, useMutation, useQueryClient, type UseMutationOptions, useInfiniteQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient, type UseMutationOptions, useInfiniteQuery } from "@tanstack/react-query";
 import axiosInstance from "@/api/handler";
-import type { CreateProductPayload, ProductListResponse, ToggleActivationPayload, UpdateProductPayload, UpdateStockPayload } from "../types";
+import type { CreateProductPayload, ToggleActivationPayload, UpdateProductPayload, UpdateStockPayload } from "../types";
 import type { Product } from "@/store/wishlistSlice";
 import { productsResponseSchema, type ProductsResponse } from "@/features/products/models/product";
 import { VITE_PAGE_DATA_LIMIT } from "@/config";
-
-export const useActiveProducts = (page = 1, limit = 10) => {
-    return useQuery<ProductListResponse>({
-        queryKey: ["products-active", page, limit],
-        queryFn: async () => {
-            const { data } = await axiosInstance.get(`/products/list/active?page=${page}&limit=${limit}`);
-            return data;
-        },
-    });
-};
 
 export const useInactiveProducts = () => {
     return useInfiniteQuery<ProductsResponse>({
