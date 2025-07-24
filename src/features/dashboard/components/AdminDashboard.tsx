@@ -1,10 +1,13 @@
 import { lazy, type FC } from "react";
 import { Users, PackageCheck, ShoppingCart, DollarSign } from "lucide-react";
 import { useAdminDashboardMetrics, useSales } from "../hooks";
+import StatsGrid from "./admin/StatsGrid";
+import RecentActivity from "./admin/RecentActivity";
+import SalesChart from "./admin/SalesChart";
 
-const RecentActivity = lazy(()=> import("./admin/RecentActivity"));
-const SalesChart = lazy(()=> import("./admin/SalesChart"));
-const StatsGrid = lazy(()=> import("./admin/StatsGrid"));
+// const RecentActivity = lazy(()=> import("./admin/RecentActivity"));
+// const SalesChart = lazy(()=> import("./admin/SalesChart"));
+// const StatsGrid = lazy(()=> import("./admin/StatsGrid"));
 
 const AdminDashboard: FC = () => {
   const { metrics, loading, error } = useAdminDashboardMetrics();
