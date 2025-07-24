@@ -39,6 +39,7 @@ const UserProfile: React.FC = () => {
                     message={popup.message}
                     severity={popup.severity}
                     onClose={() => setPopup({ ...popup, open: false })}
+                    anchorOrigin={{ vertical: "top", horizontal: "right" }}
                 />
             </div>
         </>

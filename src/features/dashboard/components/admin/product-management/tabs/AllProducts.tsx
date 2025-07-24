@@ -135,6 +135,7 @@ const AllProducts = () => {
                 onClose={() => setPopupState((prev) => ({ ...prev, open: false }))}
                 message={popupState.message}
                 severity={popupState.severity}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
             />
         </div>
     );
