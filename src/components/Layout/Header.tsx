@@ -1,15 +1,25 @@
 import React, { lazy, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "@/assets/web_logo.jpg";
 import { FaBars, FaTimes } from "react-icons/fa";
 
-const CommonButton = lazy(()=> import("@/components/Button/Button"));
+const CommonButton = lazy(() => import("@/components/Button/Button"));
 
 export const Header: React.FC = () => {
     const navigate = useNavigate();
+    const location = useLocation(); // Get the current route
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
+
+    const isLoginPage = location.pathname === "/login"; // Check if the current route is /login
+
+    const handleLoginClick = () => {
+        if (!isLoginPage) {
+            navigate("/login");
+        }
+        toggleMobileMenu();
+    };
 
     return (
         <header className="bg-gray-700 text-white p-4 shadow-md sticky top-0 z-50">
@@ -49,8 +59,9 @@ export const Header: React.FC = () => {
                     <li>
                         <CommonButton
                             text="Login"
-                            onClick={() => navigate("/login")}
+                            onClick={handleLoginClick}
                             variant="secondary"
+                            disabled={isLoginPage}
                         />
                     </li>
                 </ul>
@@ -89,11 +100,9 @@ export const Header: React.FC = () => {
                     <li>
                         <CommonButton
                             text="Login"
-                            onClick={() => {
-                                navigate("/login");
-                                toggleMobileMenu();
-                            }}
+                            onClick={handleLoginClick}
                             variant="secondary"
+                            disabled={isLoginPage} // Disable if on the login page
                         />
                     </li>
                 </ul>
