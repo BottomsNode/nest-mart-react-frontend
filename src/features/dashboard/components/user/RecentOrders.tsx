@@ -24,7 +24,7 @@ const RecentOrders: FC<{ sales: any[] }> = ({ sales }) => (
                                     {new Date(order.saleDate).toLocaleDateString()}
                                 </p>
                             </div>
-                            <p className="text-green-600 font-semibold">
+                            <p className="text-green-700 font-semibold">
                                 ₹{order.totalAmount}
                             </p>
                         </div>

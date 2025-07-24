@@ -8,6 +8,7 @@ const RecommendedProducts: React.FC = () => (
                         src={`https://via.assets.so/game.png?id=1${i}&w=200&h=140`}
                         alt="Recommended"
                         className="w-full h-24 object-cover rounded mb-2"
+                        sizes="(max-width: 640px) 64px, 128px"
                     />
                     <p className="text-gray-800 font-medium">Product {i + 1}</p>
                     <p className="text-sm text-gray-500">₹{999 + i * 100}</p>

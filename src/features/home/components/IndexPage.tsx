@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
-const Popup = lazy(()=> import("@/components/Popup/Popup"));
+const Popup = lazy(() => import("@/components/Popup/Popup"));
 
 const IndexPage: FC = () => {
   const location = useLocation();
@@ -45,8 +45,10 @@ const IndexPage: FC = () => {
         </Link>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <div className="p-6 bg-white shadow rounded-xl hover:shadow-md transition">
+      <section className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center" aria-labelledby="features-heading">
+        <h2 id="features-heading" className="sr-only">Key Features</h2>
+
+        <div className="p-6 bg-white shadow shadow-blue-700 rounded-xl hover:shadow-md transition">
           <ShoppingBag className="w-10 h-10 mx-auto text-indigo-500 mb-4" />
           <h3 className="text-xl font-bold text-gray-800 mb-2">Wide Range of Products</h3>
           <p className="text-gray-600">
@@ -54,7 +56,7 @@ const IndexPage: FC = () => {
           </p>
         </div>
 
-        <div className="p-6 bg-white shadow rounded-xl hover:shadow-md transition">
+        <div className="p-6 bg-white shadow shadow-blue-700 rounded-xl hover:shadow-md transition">
           <Truck className="w-10 h-10 mx-auto text-indigo-500 mb-4" />
           <h3 className="text-xl font-bold text-gray-800 mb-2">Fast & Reliable Delivery</h3>
           <p className="text-gray-600">
@@ -62,7 +64,7 @@ const IndexPage: FC = () => {
           </p>
         </div>
 
-        <div className="p-6 bg-white shadow rounded-xl hover:shadow-md transition">
+        <div className="p-6 bg-white shadow shadow-blue-700 rounded-xl hover:shadow-md transition">
           <CheckCircle className="w-10 h-10 mx-auto text-indigo-500 mb-4" />
           <h3 className="text-xl font-bold text-gray-800 mb-2">Trusted by Thousands</h3>
           <p className="text-gray-600">
