@@ -4,7 +4,7 @@ interface Props {
     onCheckout: () => void;
 }
 
-export const CartSummary: React.FC<Props> = ({ total, isPlacingOrder, onCheckout }) => (
+const CartSummary: React.FC<Props> = ({ total, isPlacingOrder, onCheckout }) => (
     <div className="bg-white shadow-lg rounded-lg p-6 sticky top-24 h-fit">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">Order Summary</h2>
         <div className="flex justify-between text-gray-600 mb-2">
@@ -30,3 +30,5 @@ export const CartSummary: React.FC<Props> = ({ total, isPlacingOrder, onCheckout
         </button>
     </div>
 );
+
+export default CartSummary

@@ -1,7 +1,8 @@
-import { InputField } from "@/components";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import type { Dispatch, SetStateAction } from "react";
+import { lazy, type Dispatch, type SetStateAction } from "react";
 import type { SignupFormValues } from "@/features/dashboard/models";
+
+const InputField = lazy(()=> import("@/components/Form/InputField"));
 
 export const SignupStep1 = () => (
     <>

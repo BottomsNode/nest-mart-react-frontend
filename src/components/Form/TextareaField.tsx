@@ -5,7 +5,7 @@ interface TextareaFieldProps extends TextareaHTMLAttributes<HTMLTextAreaElement>
     id: string;
 }
 
-export const TextareaField: FC<TextareaFieldProps> = ({ label, id, ...props }) => {
+const TextareaField: FC<TextareaFieldProps> = ({ label, id, ...props }) => {
     return (
         <div>
             <label htmlFor={id} className="block text-sm font-medium text-gray-700">
@@ -19,3 +19,5 @@ export const TextareaField: FC<TextareaFieldProps> = ({ label, id, ...props }) =
         </div>
     );
 };
+
+export default TextareaField

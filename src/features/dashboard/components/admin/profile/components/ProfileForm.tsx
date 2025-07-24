@@ -1,14 +1,16 @@
 import { FormProvider } from "react-hook-form";
-import { InputField } from "@/components";
 import type { UserProfileFormValues } from "@/features/dashboard/models";
 import type { UseFormReturn } from "react-hook-form";
+import { lazy } from "react";
+
+const InputField = lazy(()=> import("@/components/Form/InputField"));
 
 type Props = {
     methods: UseFormReturn<UserProfileFormValues>;
     onSubmit: (data: UserProfileFormValues) => void;
 };
 
-export const ProfileForm = ({ methods, onSubmit }: Props) => (
+const ProfileForm = ({ methods, onSubmit }: Props) => (
     <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-semibold mb-4 text-blue-700">Profile Information</h2>
         <FormProvider {...methods}>
@@ -27,3 +29,5 @@ export const ProfileForm = ({ methods, onSubmit }: Props) => (
         </FormProvider>
     </div>
 );
+
+export default ProfileForm;

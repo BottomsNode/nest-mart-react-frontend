@@ -1,6 +1,6 @@
 import { useSaleItemDetails } from "../hooks/useSaleItemDetails";
 
-export const SaleItemDetail = ({
+const SaleItemDetail = ({
     itemId,
     quantity,
     price,
@@ -50,3 +50,5 @@ export const SaleItemDetail = ({
         </div>
     );
 };
+
+export default SaleItemDetail

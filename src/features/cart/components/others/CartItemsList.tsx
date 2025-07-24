@@ -1,4 +1,4 @@
-import { CartItem } from "./CartItem";
+import { lazy } from "react";
 
 interface Props {
     items: any[];
@@ -7,8 +7,9 @@ interface Props {
     onRemove: (id: number, name: string) => void;
     onClear: () => void;
 }
+const CartItem = lazy(()=> import('./CartItem'));
 
-export const CartItemsList: React.FC<Props> = ({
+const CartItemsList: React.FC<Props> = ({
     items,
     onIncrement,
     onDecrement,
@@ -33,3 +34,5 @@ export const CartItemsList: React.FC<Props> = ({
         </button>
     </div>
 );
+
+export default CartItemsList;

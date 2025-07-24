@@ -1,9 +1,9 @@
 import { lazy, useEffect, useState } from "react";
 import { useDeleteProduct, useUpdateProduct, useToggleProductActivation } from "../hooks";
-import { Popup } from "@/components/Popup";
 import { useProducts } from "@/features/products/hooks";
 
 const ProductCard = lazy(()=> import('./ProductCard'))
+const Popup = lazy(()=> import("@/components/Popup/Popup"));
 
 const AllProducts = () => {
     const [expandedId, setExpandedId] = useState<number | null>(null);

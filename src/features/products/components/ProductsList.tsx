@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useProducts } from "../hooks";
-import { ProductSearch } from "./ProductSearch";
-import { ProductGrid } from "./ProductGrid";
-import { ProductLoaderStatus } from "./ProductLoaderStatus";
 import { addToCart } from "@/store/cartSlice";
+
+const ProductGrid = lazy(()=> import('./ProductGrid'));
+const ProductSearch = lazy(()=> import('./ProductSearch'));
+const ProductLoaderStatus = lazy(()=> import('./ProductLoaderStatus'));
 
 const ProductsList: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState("");

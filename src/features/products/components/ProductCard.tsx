@@ -1,12 +1,14 @@
-import { memo, useMemo, useCallback, useState } from "react";
+import { memo, useMemo, useCallback, useState, lazy } from "react";
 import { Heart, HeartIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist, removeFromWishlist, type Product } from "@/store/wishlistSlice";
 import type { RootState } from "@/store";
-import { AddToCartButton, Popup } from "@/components";
 import { usePopup } from "../hooks";
 import { StatusBadge } from "./StatusBadge";
 import { QuantitySelector } from "./QuantitySelector";
+
+const Popup = lazy(()=> import("@/components/Popup/Popup"));
+const AddToCartButton = lazy(()=>import('@/components/Add-To-Cart-Button/AddToCartButton'))
 
 type ProductCardProps = {
     product: Product;
@@ -127,4 +129,6 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ product, onPurchase 
     );
 };
 
-export const ProductCard = memo(ProductCardComponent);
+const ProductCard = memo(ProductCardComponent);
+
+export default ProductCard

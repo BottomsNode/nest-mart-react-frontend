@@ -1,14 +1,16 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, type LoginFormValues } from "../models";
-import { InputField } from "@/components";
-import { CommonButton } from "@/components/Button";
 import { Loader } from "@/components/Loader";
-import { Popup } from "@/components/Popup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+import { lazy, useState } from "react";
 import { useLogin } from "../hooks";
 import { Link } from "react-router-dom";
+
+const Popup = lazy(()=> import("@/components/Popup/Popup"));
+const CommonButton = lazy(()=> import("@/components/Button/Button"));
+const InputField = lazy(()=> import("@/components/Form/InputField"));
+
 
 const LoginForm: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);

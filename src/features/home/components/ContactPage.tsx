@@ -1,10 +1,12 @@
-import { type FC, useEffect, useState } from "react";
+import { type FC, lazy, useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, type ContactFormValues } from "../models";
-import { InputField, TextareaField } from "@/components";
-import { CommonButton } from "@/components/Button";
 import { motion } from "framer-motion";
+
+const CommonButton = lazy(()=> import("@/components/Button/Button"));
+const InputField = lazy(()=> import("@/components/Form/InputField"));
+const TextareaField = lazy(()=> import("@/components/Form/TextareaField"));
 
 const ContactPage: FC = () => {
     const [mapSrc, setMapSrc] = useState("");

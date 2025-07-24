@@ -1,9 +1,12 @@
-import type { FC } from "react";
+import { lazy, type FC } from "react";
 import { FormProvider } from "react-hook-form";
 import { SignupStep1, SignupStep2, SignupStep3 } from "./components";
-import { CommonButton, Loader, Popup } from "@/components";
+import { Loader } from "@/components";
 import { useSignupForm, TOTAL_STEPS } from "./hooks";
 import { motion, AnimatePresence } from "framer-motion";
+
+const Popup = lazy(()=> import("@/components/Popup/Popup"));
+const CommonButton = lazy(()=> import("@/components/Button/Button"));
 
 const SignupForm: FC = () => {
     const {

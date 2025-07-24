@@ -11,7 +11,7 @@ interface CommonButtonProps {
     disabled?: boolean;
 }
 
-export const CommonButton: React.FC<CommonButtonProps> = ({
+const CommonButton: React.FC<CommonButtonProps> = ({
     text,
     onClick,
     variant = 'primary',
@@ -53,3 +53,5 @@ export const CommonButton: React.FC<CommonButtonProps> = ({
         </button>
     );
 };
+
+export default CommonButton

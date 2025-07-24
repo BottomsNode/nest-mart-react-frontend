@@ -7,7 +7,7 @@ interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
     icon?: ReactNode;
 }
 
-export const InputField: FC<InputFieldProps> = ({ label, name, icon, ...props }) => {
+const InputField: FC<InputFieldProps> = ({ label, name, icon, ...props }) => {
     const {
         register,
         formState: { errors },
@@ -39,3 +39,5 @@ export const InputField: FC<InputFieldProps> = ({ label, name, icon, ...props })
         </div>
     );
 };
+
+export default InputField;

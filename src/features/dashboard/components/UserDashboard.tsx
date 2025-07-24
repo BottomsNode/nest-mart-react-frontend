@@ -1,16 +1,18 @@
-import type { FC } from "react";
+import { lazy, type FC } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
 import { useSaleByEmail } from "@/features/orders/hooks";
 import LastOrderCard from "./user/LastOrderCard";
-import WelcomeHeader from "./user/WelcomeHeader";
-import DashboardLinks from "./user/DashboardLinks";
-import LatestUpdates from "./user/LatestUpdates";
-import QuickSettings from "./user/QuickSettings";
-import RecentlyViewed from "./user/RecentlyViewed";
-import RecentOrders from "./user/RecentOrders";
-import RecommendedProducts from "./user/RecommendedProducts";
-import RewardProgress from "./user/RewardProgress";
+
+
+const WelcomeHeader = lazy(()=> import('./user/WelcomeHeader'))
+const DashboardLinks = lazy(()=> import('./user/DashboardLinks'))
+const LatestUpdates = lazy(()=> import('./user/LatestUpdates'))
+const QuickSettings = lazy(()=> import('./user/QuickSettings'))
+const RecentlyViewed = lazy(()=> import('./user/RecentlyViewed'))
+const RecentOrders = lazy(()=> import('./user/RecentOrders'))
+const RecommendedProducts = lazy(()=> import('./user/RecommendedProducts'))
+const RewardProgress = lazy(()=> import('./user/RewardProgress'))
 
 const UserDashboard: FC = () => {
     const user = useSelector((state: RootState) => state.auth.user);

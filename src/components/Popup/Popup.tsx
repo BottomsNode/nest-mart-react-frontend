@@ -22,7 +22,7 @@ const iconMap = {
     error: <ErrorIcon fontSize="inherit" />,
 };
 
-export const Popup: React.FC<PopupProps> = ({
+const Popup: React.FC<PopupProps> = ({
     severity,
     message,
     open,
@@ -71,3 +71,5 @@ export const Popup: React.FC<PopupProps> = ({
         </Snackbar>
     );
 };
+
+export default Popup

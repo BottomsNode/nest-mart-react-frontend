@@ -6,7 +6,7 @@ interface Props {
     onSearch: (term: string) => void;
 }
 
-export const ProductSearch: React.FC<Props> = ({ onSearch }) => {
+const ProductSearch: React.FC<Props> = ({ onSearch }) => {
     const [inputValue, setInputValue] = useState("");
 
     const debouncedSearch = useMemo(() => debounce(onSearch, 500), [onSearch]);
@@ -34,3 +34,5 @@ export const ProductSearch: React.FC<Props> = ({ onSearch }) => {
         </div>
     );
 };
+
+export default ProductSearch;

@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC } from "react";
+import { lazy, useEffect, useState, type FC } from "react";
 import {
   Sparkles,
   ArrowRight,
@@ -7,7 +7,8 @@ import {
   Truck,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { Popup } from "@/components";
+
+const Popup = lazy(()=> import("@/components/Popup/Popup"));
 
 const IndexPage: FC = () => {
   const location = useLocation();

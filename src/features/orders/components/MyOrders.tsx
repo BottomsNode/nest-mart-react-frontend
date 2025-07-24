@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import { useSaleByEmail } from "../hooks";
-import { SaleItemDetail } from "./SaleItemDetail";
 import type { RootState } from "@/store";
 import { ShoppingBag, IndianRupee, CalendarDays, Eye } from "lucide-react";
 import { Loader } from "@/components";
@@ -10,6 +9,8 @@ import logo from "@/assets/web_logo.jpg";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { formatCurrency, loadImageAsBase64 } from "@/features/cart/components";
+
+const SaleItemDetail = lazy(()=> import("./SaleItemDetail"));
 
 const MyOrders = () => {
     const user = useSelector((state: RootState) => state.auth.user);

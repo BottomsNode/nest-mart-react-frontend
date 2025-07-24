@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { lazy, useState } from "react";
 import { useCreateProduct } from "../hooks";
-import { Popup } from "@/components/Popup";
+
+const Popup = lazy(()=> import("@/components/Popup/Popup"));
 
 const CreateProduct = () => {
     const [name, setName] = useState("");

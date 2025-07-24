@@ -1,6 +1,5 @@
-import { memo } from "react";
+import { lazy, memo } from "react";
 import { HeartIcon } from "lucide-react";
-import { AddToCartButton } from "@/components";
 
 type Props = {
     product: {
@@ -14,7 +13,9 @@ type Props = {
     onAddToCart: (product: any) => void;
 };
 
-export const WishListItem = memo(({ product, onRemove, onAddToCart }: Props) => {
+const AddToCartButton = lazy(()=>import('@/components/Add-To-Cart-Button/AddToCartButton'))
+
+const WishListItem = memo(({ product, onRemove, onAddToCart }: Props) => {
     const isAvailable = product.stock > 0 && product.status === 1;
 
     return (
@@ -65,3 +66,5 @@ export const WishListItem = memo(({ product, onRemove, onAddToCart }: Props) => 
         </li>
     );
 });
+
+export default WishListItem

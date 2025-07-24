@@ -6,7 +6,7 @@ interface Props {
     loaderRef: React.RefObject<HTMLDivElement | null>;
 }
 
-export const ProductLoaderStatus: React.FC<Props> = ({
+const ProductLoaderStatus: React.FC<Props> = ({
     isFetchingNextPage,
     hasNextPage,
     loaderRef,
@@ -22,3 +22,5 @@ export const ProductLoaderStatus: React.FC<Props> = ({
                 : "No more products"}
     </div>
 );
+
+export default ProductLoaderStatus;

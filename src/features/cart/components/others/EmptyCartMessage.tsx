@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ShoppingBag } from "lucide-react";
 
-export const EmptyCartMessage = () => (
+const EmptyCartMessage: React.FC = () => (
     <div className="flex flex-col items-center justify-center mt-20 text-center">
         <span className="animate-bounce text-4xl bg-amber-100 p-5 rounded-full shadow-md mb-10">
             🛒
@@ -20,3 +20,5 @@ export const EmptyCartMessage = () => (
         </Link>
     </div>
 );
+
+export default EmptyCartMessage;

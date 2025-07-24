@@ -1,9 +1,11 @@
-import React from "react";
+import React, { lazy } from "react";
 import { useSelector } from "react-redux";
 import { useUserProfile } from "./hooks/useUserProfile";
-import { Popup } from "@/components";
 import type { RootState } from "@/store";
-import { AddressForm, ProfileForm } from "./components";
+
+const AddressForm = lazy(()=> import("./components/AddressForm"));
+const ProfileForm = lazy(()=> import("./components/ProfileForm"));
+const Popup = lazy(()=> import("@/components/Popup/Popup"));
 
 const UserProfile: React.FC = () => {
     const userId = useSelector((state: RootState) => state.auth.user?.id);

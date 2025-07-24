@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { resetPwdSchema, type ResetPasswordFormValues } from "../models/resetPwd";
-import { InputField } from "@/components";
-import { CommonButton } from "@/components/Button";
-import { Popup } from "@/components/Popup";
 import { Loader } from "@/components/Loader";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axiosInstance from "@/api/handler";
+
+const Popup = lazy(()=> import("@/components/Popup/Popup"));
+const CommonButton = lazy(()=> import("@/components/Button/Button"));
+const InputField = lazy(()=> import("@/components/Form/InputField"));
 
 const ResetPasswordForm: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);

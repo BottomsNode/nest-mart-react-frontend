@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { HeartIcon, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { WishListItem } from "./WishListItem";
+import { lazy, useState } from "react";
 import type { RootState } from "@/store";
 import { removeFromWishlist } from "@/store/wishlistSlice";
 import { addToCart } from "@/store/cartSlice";
-import { Popup } from "@/components";
+
+const Popup = lazy(()=> import("@/components/Popup/Popup"));
+const WishListItem = lazy(()=> import("./WishListItem"));
 
 const WishList: React.FC = () => {
     const dispatch = useDispatch();

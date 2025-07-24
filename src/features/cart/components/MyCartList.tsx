@@ -1,6 +1,10 @@
-import { Popup } from "@/components";
+import { lazy } from "react";
 import { useCheckout } from "../hooks";
-import { EmptyCartMessage, CartItemsList, CartSummary } from "./others";
+
+const Popup = lazy(()=> import("@/components/Popup/Popup"));
+const EmptyCartMessage = lazy(()=> import("./others/EmptyCartMessage"));
+const CartItemsList = lazy(()=> import("./others/CartItemsList"));
+const CartSummary = lazy(()=> import("./others/CartSummary"));
 
 const MyCartList: React.FC = () => {
     const {

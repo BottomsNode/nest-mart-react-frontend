@@ -7,7 +7,7 @@ type AddToCartButtonProps = {
     onAddToCart: () => void;
 };
 
-export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
+const AddToCartButton: React.FC<AddToCartButtonProps> = ({
     isAvailable,
     quantity = 1,
     maxStock = 1,
@@ -26,3 +26,5 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
         </button>
     );
 };
+
+export default AddToCartButton;

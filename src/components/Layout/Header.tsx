@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "@/assets/web_logo.jpg";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { CommonButton } from "../Button";
+
+const CommonButton = lazy(()=> import("@/components/Button/Button"));
 
 export const Header: React.FC = () => {
     const navigate = useNavigate();

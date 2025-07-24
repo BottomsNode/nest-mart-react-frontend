@@ -12,7 +12,7 @@ type CartItemProps = {
     onRemove: () => void;
 };
 
-export const CartItem: React.FC<CartItemProps> = ({
+const CartItem: React.FC<CartItemProps> = ({
     name,
     price,
     qty,
@@ -73,3 +73,5 @@ export const CartItem: React.FC<CartItemProps> = ({
         </div>
     );
 };
+
+export default CartItem;
