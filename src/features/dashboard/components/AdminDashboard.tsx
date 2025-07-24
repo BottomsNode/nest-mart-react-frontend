@@ -1,4 +1,4 @@
-import { lazy, type FC } from "react";
+import { type FC } from "react";
 import { Users, PackageCheck, ShoppingCart, DollarSign } from "lucide-react";
 import { useAdminDashboardMetrics, useSales } from "../hooks";
 import StatsGrid from "./admin/StatsGrid";
