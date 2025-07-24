@@ -61,7 +61,7 @@ const OrderConfirmation: React.FC = () => {
     const user = useSelector((state: RootState) => state.auth.user);
 
     useEffect(() => {
-        const order = localStorage.getItem("lastOrder");
+        const order = sessionStorage.getItem("lastOrder");
         if (!order) {
             navigate("/cart");
             return;
@@ -70,7 +70,7 @@ const OrderConfirmation: React.FC = () => {
         try {
             const parsedOrder: OrderDetails = JSON.parse(order);
             setOrderDetails(parsedOrder);
-            localStorage.removeItem("lastOrder");
+            sessionStorage.removeItem("lastOrder");
         } catch (err) {
             console.error("Failed to parse order:", err);
             navigate("/cart");
@@ -182,14 +182,12 @@ const OrderConfirmation: React.FC = () => {
 
             // Upload to Cloudinary
             const { data: sigData } = await axiosInstance.get("/profile/signature");
-            console.log(sigData)
             const formData = new FormData();
             formData.append("file", pdfBlob);
             formData.append("api_key", sigData.apiKey);
             formData.append("timestamp", sigData.timestamp.toString());
             formData.append("signature", sigData.signature);
             formData.append("folder", sigData.folder);
-            console.log("<<<<<<<<<<<<<<<<<", formData)
 
             const uploadResponse = await axios.post(
                 `https://api.cloudinary.com/v1_1/${sigData.cloudName}/auto/upload`,
@@ -202,7 +200,6 @@ const OrderConfirmation: React.FC = () => {
             );
 
             const { secure_url } = uploadResponse.data;
-            console.log("Uploaded to Cloudinary:", secure_url);
 
             if (secure_url) {
                 setPdfUrl(secure_url);

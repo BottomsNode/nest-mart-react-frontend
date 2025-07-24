@@ -7,7 +7,7 @@ export const PublicRoute: FC<{ layout?: React.ReactNode }> = ({ layout }) => {
     const [isChecking, setIsChecking] = useState(true);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
 
         if (token) {
             navigate("/dashboard", { replace: true });
@@ -17,7 +17,6 @@ export const PublicRoute: FC<{ layout?: React.ReactNode }> = ({ layout }) => {
     }, [navigate]);
 
     if (isChecking) {
-        // my custom loader
         return <div> <Loader overlay size={40} color="#007BFF" /> </div>;
     }
 

@@ -20,7 +20,7 @@ const axiosInstance = axios.create({
 
 // Request Interceptor
 axiosInstance.interceptors.request.use((config) => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     const decoded = getDecodedToken();
 
     if (token) {
@@ -30,8 +30,9 @@ axiosInstance.interceptors.request.use((config) => {
     if (decoded?.id) {
         config.headers["x-user-id"] = decoded.id.toString();
     }
-
     return config;
+}, (error) => {
+    return Promise.reject(error);
 });
 
 // Response Interceptor

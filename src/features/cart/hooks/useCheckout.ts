@@ -41,7 +41,7 @@ export const useCheckout = () => {
         try {
             setIsPlacingOrder(true);
             await axiosInstance.post("/sale", orderPayload);
-            localStorage.setItem("lastOrder", JSON.stringify(orderPayload));
+            sessionStorage.setItem("lastOrder", JSON.stringify(orderPayload));
             setPopupMessage("Order placed successfully!");
             setPopupOpen(true);
             handleClearCart();

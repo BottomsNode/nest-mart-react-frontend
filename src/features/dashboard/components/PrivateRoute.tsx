@@ -12,7 +12,7 @@ export const PrivateRoute: FC<{ layout?: React.ReactNode }> = ({ layout }) => {
 
     useEffect(() => {
         if (!user) {
-            localStorage.removeItem('token');
+            sessionStorage.removeItem('token');
             navigate("/", {
                 replace: true,
                 state: { from: location, logout: true },
@@ -21,7 +21,7 @@ export const PrivateRoute: FC<{ layout?: React.ReactNode }> = ({ layout }) => {
     }, [user, navigate, location]);
 
     if (!user) {
-        return <div> <Loader overlay size={40} color="#007BFF" /> </div>;
+        return <div><Loader overlay size={40} color="#007BFF" /></div>;
     }
 
     return layout ? <>{layout}</> : <Outlet />;

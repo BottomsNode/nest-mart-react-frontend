@@ -3,7 +3,7 @@ import { jwtDecode } from "jwt-decode";
 
 export interface DecodedToken {
     id: number;
-    name:string;
+    name: string;
     email: string;
     role: string;
     permissions: string[];
@@ -28,11 +28,9 @@ const decodeToken = (token: string): DecodedToken | null => {
     }
 };
 
-const tokenFromStorage = localStorage.getItem("token");
-
 const initialState: AuthState = {
-    token: tokenFromStorage,
-    user: tokenFromStorage ? decodeToken(tokenFromStorage) : null,
+    token: null,
+    user: null,
 };
 
 export const authSlice = createSlice({
@@ -46,15 +44,14 @@ export const authSlice = createSlice({
             state.token = token;
             state.user = user;
 
-            localStorage.setItem("token", token);
+            sessionStorage.setItem("token", token);
         },
         logout: (state) => {
             state.token = null;
             state.user = null;
-            localStorage.removeItem("token");
         },
         hydrateFromStorage: (state) => {
-            const token = localStorage.getItem("token");
+            const token = sessionStorage.getItem("token");
             if (token) {
                 state.token = token;
                 state.user = decodeToken(token);

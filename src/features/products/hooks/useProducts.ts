@@ -69,10 +69,10 @@ export const useProducts = (searchTerm: string) => {
         // here lastPage shows the past viewed page
         // here next shows the allPage + 1 [so all page value till currrent will be viwed page + 1 and so on]
         getNextPageParam: (lastPage, allPages) => {
-            console.log("All--------------",allPages.length)
-            console.log("Last-------------",lastPage)
+            // console.log("All--------------",allPages.length)
+            // console.log("Last-------------",lastPage)
             const next = allPages.length + 1;
-            console.log("Next-------------",next)
+            // console.log("Next-------------",next)
             return next <= lastPage.totalPages ? next : undefined;
         },
         enabled: searchTerm === "",

@@ -27,9 +27,8 @@ const ContactPage: FC = () => {
         );
     }, []);
 
-    const onSubmit = (data: ContactFormValues) => {
+    const onSubmit = (_data: ContactFormValues) => {
         // Future integration: Send to backend or show a toast/snackbar
-        console.log("Contact Form Submitted:", data);
     };
 
     return (

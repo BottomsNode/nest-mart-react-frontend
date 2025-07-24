@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 
 const PageNotFound: React.FC = () => {
     const navigate = useNavigate();
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     const redirectTo = token ? "/dashboard" : "/";
 
     useEffect(() => {
