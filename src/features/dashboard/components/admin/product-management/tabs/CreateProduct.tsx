@@ -37,7 +37,7 @@ const CreateProduct = () => {
         <>
             <form
                 onSubmit={handleSubmit}
-                className="max-w-md mx-auto p-6 bg-white rounded-xl shadow space-y-4"
+                className="max-h-[100vh] max-w-screen mx-auto p-6 bg-white rounded-xl shadow space-y-4"
             >
                 <h2 className="text-xl font-semibold text-gray-800">Create New Product</h2>
 

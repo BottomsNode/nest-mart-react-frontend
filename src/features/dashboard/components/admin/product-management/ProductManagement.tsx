@@ -46,7 +46,7 @@ const ProductManagement: FC = () => {
                     <button
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
-                        className={`py-1.5 px-4 text-sm rounded-md font-medium transition flex items-center gap-2 ${activeTab === tab.id
+                        className={`py-1.5 px-4 text-xl rounded-md font-medium transition flex items-center gap-5 ${activeTab === tab.id
                                 ? "bg-indigo-600 text-white"
                                 : "bg-gray-200 text-gray-700 hover:bg-indigo-100"
                             }`}

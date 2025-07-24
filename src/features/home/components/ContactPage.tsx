@@ -32,7 +32,7 @@ const ContactPage: FC = () => {
     };
 
     return (
-        <div className="h-full flex items-center justify-center bg-gradient-to-tr from-blue-50 to-white p-4">
+        <div className="min-h-[75vh] flex items-center justify-center bg-gradient-to-tr from-blue-50 to-white p-4">
             <motion.div
                 className="max-w-6xl w-full bg-white rounded-2xl shadow-xl overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}

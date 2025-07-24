@@ -10,7 +10,7 @@ const RecentActivity: FC = () => {
 
     return (
         <div className="bg-white rounded-xl shadow-sm p-6">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h2>
+            <h2 className="text-lg font-semibold text-gray-800 mb-5">Recent Activity</h2>
 
             {loading ? (
                 <p className="text-sm text-gray-500">Loading recent activity...</p>

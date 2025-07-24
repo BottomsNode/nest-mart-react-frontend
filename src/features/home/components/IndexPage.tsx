@@ -22,7 +22,7 @@ const IndexPage: FC = () => {
   }, [location.state]);
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-white min-h-screen">
+    <div className="bg-gradient-to-br from-blue-50 to-white min-h-[75vh]">
 
       <section className="flex flex-col items-center justify-center text-center py-5 px-4 animate-fade-in-up">
         <div className="flex justify-center mb-4">

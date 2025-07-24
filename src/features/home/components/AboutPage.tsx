@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const AboutPage: FC = () => {
     return (
-        <div className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-white px-4">
+        <div className="min-h-[75vh] flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-white px-4">
             <motion.div
                 className="max-w-2xl text-center"
                 initial={{ opacity: 0, y: 20 }}

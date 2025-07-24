@@ -36,7 +36,7 @@ const LoginForm: React.FC = () => {
     } = useLogin(from);
 
     return (
-        <div className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-blue-50 to-white px-4 animate-fade-in-up">
+        <div className="min-h-[75vh] flex items-center justify-center bg-gradient-to-br from-blue-50 to-white px-4 animate-fade-in-up">
             <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-6">
                 <div className="text-center">
                     <h2 className="text-3xl font-extrabold text-blue-700 mb-2">Welcome Back</h2>

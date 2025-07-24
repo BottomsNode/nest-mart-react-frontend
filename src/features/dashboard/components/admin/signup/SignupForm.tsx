@@ -26,7 +26,7 @@ const SignupForm: FC = () => {
     } = useSignupForm();
 
     return (
-        <div className="min-h-[50vh] flex items-center justify-center bg-gray-50 px-4 py-4">
+        <div className="min-h-[75vh] flex items-center justify-center bg-gray-50 px-4 py-4">
             <div className="w-full max-w-xl bg-white p-5 rounded-2xl shadow-lg space-y-8">
                 <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
                     <div
