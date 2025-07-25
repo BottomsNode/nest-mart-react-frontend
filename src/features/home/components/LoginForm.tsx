@@ -7,9 +7,9 @@ import { lazy, useState } from "react";
 import { useLogin } from "../hooks";
 import { Link } from "react-router-dom";
 
-const Popup = lazy(()=> import("@/components/Popup/Popup"));
-const CommonButton = lazy(()=> import("@/components/Button/Button"));
-const InputField = lazy(()=> import("@/components/Form/InputField"));
+const Popup = lazy(() => import("@/components/Popup/Popup"));
+const CommonButton = lazy(() => import("@/components/Button/Button"));
+const InputField = lazy(() => import("@/components/Form/InputField"));
 
 
 const LoginForm: React.FC = () => {
@@ -73,15 +73,6 @@ const LoginForm: React.FC = () => {
                             </button>
                         </div>
 
-                        <div className="flex items-center justify-between text-sm">
-                            <span className="text-gray-500">Forgot your password?</span>
-                            <Link to="/reset-password" className="text-blue-600 hover:underline">
-                                Reset
-                            </Link>
-                        </div>
-
-                        {loading && <Loader overlay size={40} color="#007BFF" />}
-
                         <div className="pt-2">
                             <CommonButton
                                 type="submit"
@@ -90,6 +81,17 @@ const LoginForm: React.FC = () => {
                                 className="w-full"
                             />
                         </div>
+                        
+                        <div className="flex items-center justify-between text-sm">
+                            <span className="text-gray-500">Forgot your password?
+                                <Link to="/reset-password" className="text-blue-600 hover:underline">
+                                    <span className="ml-1 text-blue-600">Reset it here</span>
+                                </Link>
+                            </span>
+                        </div>
+
+                        {loading && <Loader overlay size={40} color="#007BFF" />}
+
                     </form>
                 </FormProvider>
 
@@ -101,7 +103,7 @@ const LoginForm: React.FC = () => {
                     anchorOrigin={{ vertical: "top", horizontal: "right" }}
                 />
             </div>
-        </div>
+        </div >
     );
 };
 

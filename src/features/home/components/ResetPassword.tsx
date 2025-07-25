@@ -6,10 +6,11 @@ import { resetPwdSchema, type ResetPasswordFormValues } from "../models/resetPwd
 import { Loader } from "@/components/Loader";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axiosInstance from "@/api/handler";
+import { Link } from "react-router-dom";
 
-const Popup = lazy(()=> import("@/components/Popup/Popup"));
-const CommonButton = lazy(()=> import("@/components/Button/Button"));
-const InputField = lazy(()=> import("@/components/Form/InputField"));
+const Popup = lazy(() => import("@/components/Popup/Popup"));
+const CommonButton = lazy(() => import("@/components/Button/Button"));
+const InputField = lazy(() => import("@/components/Form/InputField"));
 
 const ResetPasswordForm: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -60,7 +61,7 @@ const ResetPasswordForm: React.FC = () => {
     return (
         <>
             {loading && <Loader overlay={true} />}
-            <div className="min-h-[100vh] flex items-center justify-center bg-gradient-to-br from-blue-50 to-white px-4 animate-fade-in-up">
+            <div className="min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-blue-50 to-white px-4 animate-fade-in-up">
                 <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-6">
                     <div className="text-center">
                         <h2 className="text-3xl font-extrabold text-blue-700 mb-2">Reset Password</h2>
@@ -105,8 +106,16 @@ const ResetPasswordForm: React.FC = () => {
                                 </button>
                             </div>
 
-                            <div className="flex justify-center pt-4">
-                                <CommonButton type="submit" text="Reset Password" />
+                            <div className="flex justify-center">
+                                <CommonButton type="submit" text="Reset Password" className="w-full"/>
+                            </div>
+
+                            <div className="flex items-center justify-between text-sm">
+                                <span className="text-gray-500">Go to Login Page 
+                                    <Link to="/login" className="text-blue-600 hover:underline">
+                                        <span className="text-blue-600">Click Here</span>
+                                    </Link>
+                                </span>
                             </div>
                         </form>
                     </FormProvider>

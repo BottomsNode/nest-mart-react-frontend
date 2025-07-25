@@ -66,7 +66,7 @@ const ContactPage: FC = () => {
                                     placeholder="Enter your message"
                                 />
                                 <div className="flex justify-center pt-4">
-                                    <CommonButton type="submit" text="Send Message" className="px-6" />
+                                    <CommonButton type="submit" text="Send Message" className="px-6 w-full" />
                                 </div>
                             </form>
                         </FormProvider>
