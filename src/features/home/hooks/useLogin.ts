@@ -33,7 +33,7 @@ export const useLogin = (redirectTo: string = "/dashboard") => {
         },
         onError: (error: any) => {
             setAlertSeverity("error");
-            setAlertMessage(`${error.response.data.message} or Email`);
+            setAlertMessage(`${error.response.data.message}`);
             setOpenSnackbar(true);
         },
     });
