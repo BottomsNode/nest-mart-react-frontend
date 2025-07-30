@@ -7,8 +7,15 @@ import axiosInstance from "@/api/handler";
 import { signupSchema, type SignupFormValues } from "@/features/dashboard/models";
 import { getFieldsForStep } from "../components";
 
-export const TOTAL_STEPS = 3
-;
+
+interface MyErroType {
+    message: string
+    path: string
+    statusCode: number
+    timestamp: string
+}
+export const TOTAL_STEPS = 3;
+
 export const useSignupForm = () => {
     const [step, setStep] = useState(1);
     const [showPassword, setShowPassword] = useState(false);
@@ -48,18 +55,17 @@ export const useSignupForm = () => {
         setError(null);
         try {
             await axiosInstance.post("/user", data);
-            
+
             setTimeout(() => {
                 setPopupMessage("User created successfully!");
                 setPopupSeverity("success");
                 setPopupOpen(true);
                 setTimeout(() => navigate("/dashboard"), 1000);
             }, 1000);
-        } catch (err) {
-            console.error("User creation failed:", err);
+        } catch (err: MyErroType | any) {
             setError("An error occurred. Please try again.");
             setTimeout(() => {
-                setPopupMessage("User creation failed!");
+                setPopupMessage(`${err.response.data.message}`);
                 setPopupSeverity("error");
                 setPopupOpen(true);
             }, 1000);
