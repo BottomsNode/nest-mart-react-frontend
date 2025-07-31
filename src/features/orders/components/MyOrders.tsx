@@ -19,7 +19,6 @@ const MyOrders = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { data: sales, isLoading, isError, error, refetch } = useSaleByEmail(email || "");
-    console.log(sales)
     
     useEffect(() => {
         if (email) refetch();

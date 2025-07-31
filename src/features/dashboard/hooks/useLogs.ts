@@ -18,7 +18,6 @@ export const useLogs = () => {
         const fetchLogs = async () => {
             try {
                 const res = await axiosInstance.get("/logs");
-                console.log(res)
                 setLogs(res.data);
             } catch (err: any) {
                 setError(err.message || "Unknown error");

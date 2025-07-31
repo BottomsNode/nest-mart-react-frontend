@@ -19,7 +19,6 @@ export const useLogin = (redirectTo: string = "/dashboard") => {
     const mutation = useMutation({
         mutationFn: async (data: LoginFormValues) => {
             const response = await axiosInstance.post("/auth/login", data);
-            console.log(response)
             return response.data;
         },
         onSuccess: (data) => {
@@ -34,7 +33,6 @@ export const useLogin = (redirectTo: string = "/dashboard") => {
         },
         onError: (error: any) => {
             setAlertSeverity("error");
-            console.log(error.response)
             setAlertMessage(`${error.response.data.message}`);
             setOpenSnackbar(true);
         },
