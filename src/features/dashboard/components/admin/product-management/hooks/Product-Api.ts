@@ -29,6 +29,30 @@ export const useInactiveProducts = () => {
     });
 };
 
+export const useActiveProducts = () => {
+    return useInfiniteQuery<ProductsResponse>({
+        queryKey: ["products-active"],
+        queryFn: async ({ pageParam = 1 }) => {
+            const { data } = await axiosInstance.get("/products/list/active", {
+                params: { page: pageParam, limit: VITE_PAGE_DATA_LIMIT },
+            });
+
+            const parsed = productsResponseSchema.safeParse(data);
+            if (!parsed.success) {
+                console.error("Invalid active product response:", parsed.error);
+                return { products: [], totalPages: 1, totalRecords: 0 };
+            }
+
+            return parsed.data;
+        },
+        initialPageParam: 1,
+        getNextPageParam: (lastPage, allPages) => {
+            const nextPage = allPages.length + 1;
+            return nextPage <= lastPage.totalPages ? nextPage : undefined;
+        },
+    });
+};
+
 export const useCreateProduct = (
     options?: UseMutationOptions<Product, Error, CreateProductPayload>
 ) => {

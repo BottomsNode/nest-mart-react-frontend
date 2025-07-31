@@ -1,8 +1,8 @@
-// components/InactiveProducts.tsx
 import { useInactiveProducts } from "../hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const InactiveProducts = () => {
+    const [imageLoadingMap, setImageLoadingMap] = useState<Record<number, boolean>>({});
     const {
         data,
         isLoading,
@@ -27,31 +27,45 @@ const InactiveProducts = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-    if (isLoading) return <p>Loading inactive products...</p>;
-    if (isError || !data) return <p>Failed to load inactive products.</p>;
+    if (isLoading) return <p className="text-center text-gray-500">Loading inactive products...</p>;
+    if (isError || !data) return <p className="text-center text-red-500">Failed to load inactive products.</p>;
 
     const allProducts = data.pages.flatMap((page) => page.products);
 
     return (
-        <div className="space-y-4">
-            {allProducts.length === 0 ? (
-                <p>No inactive products found.</p>
-            ) : (
-                allProducts.map((product) => (
+        <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                {allProducts.map((product) => (
                     <div
                         key={product.id}
-                        className="flex items-start gap-4 p-4 border rounded-lg bg-white shadow hover:shadow-md transition"
+                        className="relative rounded-xl overflow-hidden shadow border border-gray-200 bg-white transition hover:shadow-md"
                     >
-                        <img
-                            src={`https://via.assets.so/game.png?id=${product.id}&w=300&h=200`}
-                            alt="Product"
-                            className="w-[120px] h-[80px] object-cover rounded-md"
-                        />
+                        <div className="relative w-full h-[180px]">
+                            {imageLoadingMap[product.id] && (
+                                <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-t-xl flex items-center justify-center z-10">
+                                    <span className="text-gray-400 text-sm">Loading image...</span>
+                                </div>
+                            )}
+                            <img
+                                src={`https://via.assets.so/game.png?id=${product.id}&w=1080&h=720`}
+                                alt={product.name}
+                                className="w-full h-full object-cover rounded-t-xl"
+                                onLoad={() =>
+                                    setImageLoadingMap((prev) => ({ ...prev, [product.id]: false }))
+                                }
+                                onError={() =>
+                                    setImageLoadingMap((prev) => ({ ...prev, [product.id]: false }))
+                                }
+                                onLoadStart={() =>
+                                    setImageLoadingMap((prev) => ({ ...prev, [product.id]: true }))
+                                }
+                            />
+                        </div>
 
-                        <div className="flex-1 space-y-1">
-                            <div className="flex items-center justify-between">
-                                <h2 className="text-lg font-semibold text-gray-800">{product.name}</h2>
-                                <span className="ml-2 inline-block bg-red-200 text-red-700 text-xs font-medium px-2.5 py-1 rounded-full shadow">
+                        <div className="p-4 space-y-1">
+                            <div className="flex justify-between items-center">
+                                <h2 className="font-semibold text-lg text-gray-800">{product.name}</h2>
+                                <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-gray-200 text-gray-700">
                                     Inactive
                                 </span>
                             </div>
@@ -59,12 +73,16 @@ const InactiveProducts = () => {
                             <p className="text-sm text-gray-600">Stock: {product.stock}</p>
                         </div>
                     </div>
-                ))
-            )}
+                ))}
+            </div>
 
-            {isFetchingNextPage && <p>Loading more...</p>}
+            {isFetchingNextPage && (
+                <div className="mt-10 flex justify-center">
+                    <p className="text-sm text-gray-500">Loading more...</p>
+                </div>
+            )}
         </div>
     );
 };
 
-export default InactiveProducts
+export default InactiveProducts;
