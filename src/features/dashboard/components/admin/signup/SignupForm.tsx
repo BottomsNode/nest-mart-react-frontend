@@ -11,8 +11,6 @@ const CommonButton = lazy(()=> import("@/components/Button/Button"));
 const SignupForm: FC = () => {
     const {
         step,
-        showPassword,
-        setShowPassword,
         loading,
         error,
         popupOpen,
