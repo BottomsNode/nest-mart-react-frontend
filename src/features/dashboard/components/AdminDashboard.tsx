@@ -4,43 +4,38 @@ import { useAdminDashboardMetrics, useSales } from "../hooks";
 import StatsGrid from "./admin/StatsGrid";
 import RecentActivity from "./admin/RecentActivity";
 import SalesChart from "./admin/SalesChart";
-
-// const RecentActivity = lazy(()=> import("./admin/RecentActivity"));
-// const SalesChart = lazy(()=> import("./admin/SalesChart"));
-// const StatsGrid = lazy(()=> import("./admin/StatsGrid"));
+import LogCard from "./admin/LogCards";
 
 const AdminDashboard: FC = () => {
   const { metrics, loading, error } = useAdminDashboardMetrics();
   const { sales, loading: salesLoading, error: salesError } = useSales();
 
-  const stats =
-    metrics &&
-    [
-      {
-        label: "Total Users",
-        value: metrics.totalUsers.toLocaleString(),
-        icon: Users,
-        color: "bg-blue-500",
-      },
-      {
-        label: "Total Products",
-        value: metrics.totalProducts.toString(),
-        icon: PackageCheck,
-        color: "bg-purple-500",
-      },
-      {
-        label: "Total Orders",
-        value: metrics.totalOrders.toString(),
-        icon: ShoppingCart,
-        color: "bg-orange-500",
-      },
-      {
-        label: "Total Revenue",
-        value: `₹ ${metrics.totalRevenue.toLocaleString()}`,
-        icon: DollarSign,
-        color: "bg-green-500",
-      },
-    ];
+  const stats = metrics && [
+    {
+      label: "Total Users",
+      value: metrics.totalUsers.toLocaleString(),
+      icon: Users,
+      color: "bg-blue-500",
+    },
+    {
+      label: "Total Products",
+      value: metrics.totalProducts.toString(),
+      icon: PackageCheck,
+      color: "bg-purple-500",
+    },
+    {
+      label: "Total Orders",
+      value: metrics.totalOrders.toString(),
+      icon: ShoppingCart,
+      color: "bg-orange-500",
+    },
+    {
+      label: "Total Revenue",
+      value: `₹ ${metrics.totalRevenue.toLocaleString()}`,
+      icon: DollarSign,
+      color: "bg-green-500",
+    },
+  ];
 
   return (
     <div className="min-h-[75vh] bg-gray-0 p-6">
@@ -68,9 +63,11 @@ const AdminDashboard: FC = () => {
             <SalesChart data={sales} />
           )}
         </div>
+
+        <LogCard />
       </div>
     </div>
   );
 };
 
-export default AdminDashboard
+export default AdminDashboard;

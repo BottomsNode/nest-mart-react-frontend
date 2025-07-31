@@ -33,7 +33,6 @@ export const useSignupForm = () => {
             name: "",
             phone: "",
             email: "",
-            password: "User@123",
             address: {
                 street: "",
                 city: "",

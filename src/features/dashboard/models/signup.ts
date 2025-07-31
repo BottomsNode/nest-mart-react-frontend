@@ -18,10 +18,6 @@ export const signupSchema = z.object({
         .trim()
         .email("Invalid email address"),
 
-    password: z
-        .string()
-        .min(6, "Password must be at least 6 characters"),
-
     address: z.object({
         street: z
             .string()

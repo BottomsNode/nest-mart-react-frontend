@@ -52,12 +52,6 @@ const SignupForm: FC = () => {
                                 transition={{ duration: 0.3 }}
                             >
                                 {step === 1 && <SignupStep1 />}
-                                {/* {step === 2 && (
-                                    <SignupStep2
-                                        showPassword={showPassword}
-                                        setShowPassword={setShowPassword}
-                                    />
-                                )} */}
                                 {step === 2 && <SignupStep3 />}
                             </motion.div>
                         </AnimatePresence>
