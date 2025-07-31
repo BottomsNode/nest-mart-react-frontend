@@ -1,4 +1,3 @@
-// useSignupForm.ts
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,7 +13,7 @@ interface MyErroType {
     statusCode: number
     timestamp: string
 }
-export const TOTAL_STEPS = 3;
+export const TOTAL_STEPS = 2;
 
 export const useSignupForm = () => {
     const [step, setStep] = useState(1);
@@ -34,7 +33,7 @@ export const useSignupForm = () => {
             name: "",
             phone: "",
             email: "",
-            password: "",
+            password: "User@123",
             address: {
                 street: "",
                 city: "",

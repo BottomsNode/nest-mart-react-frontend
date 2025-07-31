@@ -1,6 +1,6 @@
 import { lazy, type FC } from "react";
 import { FormProvider } from "react-hook-form";
-import { SignupStep1, SignupStep2, SignupStep3 } from "./components";
+import { SignupStep1, SignupStep3 } from "./components";
 import { Loader } from "@/components";
 import { useSignupForm, TOTAL_STEPS } from "./hooks";
 import { motion, AnimatePresence } from "framer-motion";
@@ -54,13 +54,13 @@ const SignupForm: FC = () => {
                                 transition={{ duration: 0.3 }}
                             >
                                 {step === 1 && <SignupStep1 />}
-                                {step === 2 && (
+                                {/* {step === 2 && (
                                     <SignupStep2
                                         showPassword={showPassword}
                                         setShowPassword={setShowPassword}
                                     />
-                                )}
-                                {step === 3 && <SignupStep3 />}
+                                )} */}
+                                {step === 2 && <SignupStep3 />}
                             </motion.div>
                         </AnimatePresence>
 
