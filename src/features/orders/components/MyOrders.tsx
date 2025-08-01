@@ -8,7 +8,7 @@ import { Dialog } from "@headlessui/react";
 import logo from "@/assets/web_logo.jpg";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import { formatCurrency, loadImageAsBase64 } from "@/features/cart/components";
+import { formatCurrency, loadImageAsBase64 } from "@/features/cart/hooks";
 
 const SaleItemDetail = lazy(()=> import("./SaleItemDetail"));
 

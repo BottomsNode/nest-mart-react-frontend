@@ -18,7 +18,7 @@ const AdminDashboard: FC = () => {
       color: "bg-blue-500",
     },
     {
-      label: "Total Products",
+      label: "Total Active Products",
       value: metrics.totalProducts.toString(),
       icon: PackageCheck,
       color: "bg-purple-500",
