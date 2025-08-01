@@ -27,6 +27,7 @@ export interface OrderDetails {
 export const generatePDFInvoice = async (
     orderDetails: OrderDetails,
     user: { name: string; email: string },
+    formattedSaleDate: string
 ) => {
     if (!orderDetails || !user) return;
 
@@ -62,11 +63,6 @@ export const generatePDFInvoice = async (
         doc.setDrawColor(180);
         doc.line(14, 44, 196, 44);
 
-        const invoiceDate = new Date(orderDetails.saleDate).toLocaleString("en-IN", {
-            timeZone: "Asia/Kolkata",
-            dateStyle: "medium",
-            timeStyle: "short",
-        });
 
         // Customer Info
         doc.setFontSize(12);
@@ -74,7 +70,7 @@ export const generatePDFInvoice = async (
         doc.text(`Customer Name: ${user.name}`, 14, 50);
         doc.text(`Email: ${user.email}`, 14, 56);
         doc.text(`Order ID: #${orderDetails.orderId}`, 14, 62);
-        doc.text(`Invoice Date: ${invoiceDate}`, 14, 68);
+        doc.text(`Invoice Date: ${formattedSaleDate}`, 14, 68);
         doc.setTextColor(0);
 
         // Table

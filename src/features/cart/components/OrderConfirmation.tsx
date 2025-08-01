@@ -42,7 +42,6 @@ const OrderConfirmation: React.FC = () => {
     const { formatToIST } = useISTDate();
     const formattedSaleDate = formatToIST(saleDate);
 
-
     return (
         <div className="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
@@ -100,7 +99,7 @@ const OrderConfirmation: React.FC = () => {
 
             <div className="flex justify-center mt-6">
                 <button
-                    onClick={() => user && generatePDFInvoice(orderDetails, user)}
+                    onClick={() => user && generatePDFInvoice(orderDetails, user, formattedSaleDate)}
                     disabled={!user}
                     className={`px-6 py-2 rounded-lg transition ${user ? "bg-blue-600 text-white hover:bg-blue-700" : "bg-gray-400 text-gray-200 cursor-not-allowed"
                         }`}

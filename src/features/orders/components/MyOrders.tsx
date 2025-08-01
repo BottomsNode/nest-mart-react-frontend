@@ -8,18 +8,23 @@ import { Dialog } from "@headlessui/react";
 import logo from "@/assets/web_logo.jpg";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import { formatCurrency, loadImageAsBase64 } from "@/features/cart/hooks";
+import {
+    formatCurrency,
+    loadImageAsBase64,
+    useISTDate,
+} from "@/features/cart/hooks";
+import { fetchSaleItemDetails } from "../hooks/fetchSaleItemDetails ";
 
-const SaleItemDetail = lazy(()=> import("./SaleItemDetail"));
+const SaleItemDetail = lazy(() => import("./SaleItemDetail"));
 
 const MyOrders = () => {
     const user = useSelector((state: RootState) => state.auth.user);
     const email = user?.email;
     const [selectedSale, setSelectedSale] = useState<any | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const { formatToIST } = useISTDate();
     const { data: sales, isLoading, isError, error, refetch } = useSaleByEmail(email || "");
-    
+
     useEffect(() => {
         if (email) refetch();
     }, [email, refetch]);
@@ -28,8 +33,8 @@ const MyOrders = () => {
     if (isLoading) return <Loader overlay />;
     if (isError) return <p className="text-center text-red-500 py-10">{error?.message || "Failed to load your orders."}</p>;
     if (!sales || sales.length === 0) return <p className="text-center text-gray-500 py-10">No orders found.</p>;
-
-    const generatePDF = async (orderDetails: any, user: any) => {
+    
+    const generatePDF = async (orderDetails: any, user: any, formattedDate: string) => {
         if (!orderDetails || !user) return;
 
         try {
@@ -50,7 +55,7 @@ const MyOrders = () => {
                 console.warn("Logo loading failed:", err);
             }
 
-            // Title & Company Info
+            // Header
             doc.setFontSize(18);
             doc.setFont("helvetica", "bold");
             doc.text("TAX INVOICE", 105, 20, { align: "center" });
@@ -64,41 +69,56 @@ const MyOrders = () => {
             doc.setDrawColor(180);
             doc.line(14, 44, 196, 44);
 
-            const dateStr = new Date(orderDetails.saleDate).toLocaleDateString("en-IN");
-
             // Buyer Info
             doc.setFontSize(12);
             doc.setTextColor(40);
             doc.text(`Customer Name: ${user.name}`, 14, 50);
             doc.text(`Email: ${user.email}`, 14, 56);
             doc.text(`Order ID: #${orderDetails.id}`, 14, 62);
-            doc.text(`Invoice Date: ${dateStr}`, 14, 68);
+            doc.text(`Invoice Date: ${formattedDate}`, 14, 68);
             doc.setTextColor(0);
 
-            // Table
+            const detailedItems = await Promise.all(
+                orderDetails.items.map(async (item: any) => {
+                    try {
+                        const details = await fetchSaleItemDetails(item.id);
+                        return {
+                            ...item,
+                            name: details?.product?.name || item.name || `Product #${item.id}`,
+                        };
+                    } catch (err) {
+                        console.warn("Failed to fetch item details", item.id, err);
+                        return {
+                            ...item,
+                            name: item.name || `Product #${item.id}`,
+                        };
+                    }
+                })
+            );
+
             autoTable(doc, {
                 startY: 78,
                 margin: { left: 14, right: 14 },
-                head: [["S.No", "Product ID", "Quantity", "Unit Price", "Total"]],
-                body: orderDetails.items.map((item: any, i: number) => [
+                head: [["S.No", "Product Name", "Qty", "Unit Price", "Total"]],
+                body: detailedItems.map((item: any, i: number) => [
                     i + 1,
-                    item.id.toString(),
+                    item.name,
                     item.quantity.toString(),
                     formatCurrency(item.priceAtPurchase),
                     formatCurrency(item.priceAtPurchase * item.quantity),
                 ]),
-                styles: { fontSize: 10 },
+                styles: { fontSize: 9, cellPadding: 1.8 },
                 headStyles: { fillColor: [22, 160, 133], textColor: 255, halign: "center" },
                 columnStyles: {
-                    0: { halign: "center" },
-                    1: { halign: "center" },
-                    2: { halign: "center" },
-                    3: { halign: "right" },
-                    4: { halign: "right" },
+                    0: { halign: "center", cellWidth: 10 },
+                    1: { halign: "left", cellWidth: 35 },
+                    2: { halign: "left", cellWidth: 30 },
+                    3: { halign: "left", cellWidth: 45 },
+                    4: { halign: "right", cellWidth: 25 },
                 },
             });
 
-            const total = orderDetails.items.reduce(
+            const total = detailedItems.reduce(
                 (sum: number, item: any) => sum + item.quantity * item.priceAtPurchase,
                 0
             );
@@ -123,11 +143,11 @@ const MyOrders = () => {
                 { align: "center" }
             );
             doc.text("Thank you for your purchase!", 105, finalY + 34, { align: "center" });
-            doc.save(`Invoice_Order_${orderDetails.id}.pdf`);
 
+            doc.save(`Invoice_Order_${orderDetails.id}.pdf`);
         } catch (err) {
             console.error("PDF generation error:", err);
-            alert("Failed to generate or upload invoice.");
+            alert("Failed to generate invoice.");
         }
     };
 
@@ -168,7 +188,7 @@ const MyOrders = () => {
                             View Details
                         </button>
                         <button
-                            onClick={() => generatePDF(sale, user)}
+                            onClick={() => generatePDF(sale, user, formatToIST(sale.saleDate))}
                             className="mt-4 w-full bg-indigo-600 text-white text-sm py-2 rounded-lg hover:bg-indigo-700 transition"
                         >
                             Download Invoice
